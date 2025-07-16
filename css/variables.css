@@ -1,0 +1,22 @@
+:root {
+  /* 색상 변수 */
+  --color-white: #ffffff;
+  --color-tab: #9595ff;
+  --color-tab-hover: #7575df;
+  --color-tab-active: #5151b1;
+  --color-tab-active-border: #2d0f71;
+  --color-button-main-bg: #9dabfe;
+  --color-button-main-hover: #6f6fd8;
+  --color-gradient-purple: #a5a3f2;
+
+  --text-color-Body2: #666666;
+  --text-color-Headline1: #8945D2;
+
+  /* 폰트 크기 (기준: 16px) */
+  --font-16: 1.6rem; /* 16px */
+  --font-18: 1.8rem; /* 18px */
+  --font-24: 2.4rem; /* 24px */
+  --font-32: 3.2rem; /* 32px */
+  --font-42: 4.2rem; /* 42px */
+
+}

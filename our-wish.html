@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wish Upon a Star⛧</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/our-wish.css" />
+  </head>
+  <body>
+    <header>
+      <a href="./index.html">
+        <div class="logo-container">
+          <img
+            class="logo-img"
+            src="./images/wish_upon_a_star_logo.svg"
+            alt="Wish Upon a Star Logo"
+            width="100%"
+          />
+        </div>
+      </a>
+      <div class="tab-menu-container">
+        <a href="./our-wish.html" class="tab-menu-item active">Our Wish</a>
+        <a href="./photo.html" class="tab-menu-item">Photo</a>
+        <a href="./music.html" class="tab-menu-item">Music</a>
+        <a href="./todays-wish.html" class="tab-menu-item">Today's Wish</a>
+      </div>
+    </header>
+    <main>
+      <div class="frame">
+        <div class="main-container">
+          <img class="sparkle-bg" src="./images/sparkle.gif" alt="sparkle-bg" />
+          <img
+            class="star-1-bg"
+            src="./images/silver-star-1.png"
+            alt="silver-star-1"
+          />
+          <img
+            class="star-2-bg"
+            src="./images/silver-star-2.png"
+            alt="silver-star-2"
+            width="400px"
+          />
+          <div class="text-container">
+            <div class="wish-title">Select Your <span>Wish</span>!</div>
+            <div class="wish-subtitle">
+              당신의 <span>위시</span>를 선택해 보세요!
+            </div>
+          </div>
+          <div class="card-container">
+            <div class="card" data-member="sion">
+              <img src="./images/ourwish-sion-card.png" alt="sion-card" />
+              <span>SION</span>
+            </div>
+            <div class="card" data-member="riku">
+              <img src="./images/ourwish-riku-card.png" alt="riku-card" />
+              <span>RIKU</span>
+            </div>
+            <div class="card" data-member="yushi">
+              <img src="./images/ourwish-yushi-card.png" alt="yushi-card" />
+              <span>YUSHI</span>
+            </div>
+            <div class="card" data-member="jaehee">
+              <img src="./images/ourwish-jaehee-card.png" alt="jaehee-card" />
+              <span>JAEHEE</span>
+            </div>
+            <div class="card" data-member="ryo">
+              <img src="./images/ourwish-ryo-card.png" alt="ryo-card" />
+              <span>RYO</span>
+            </div>
+            <div class="card" data-member="sakuya">
+              <img src="./images/ourwish-saku-card.png" alt="saku-card" />
+              <span>SAKU</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="modal-template" class="modal hidden">
+      <div class="modal-overlay"></div>
+      <div class="modal-content-container">
+        <div class="modal-content-box-left">
+          <div class="modal-text-container">
+            <div class="text-box">
+              <div class="text-title">Name</div>
+              <div class="text-content"></div>
+            </div>
+            <div class="text-box">
+              <div class="text-title">Name</div>
+              <div class="text-content"></div>
+            </div>
+            <div class="text-box">
+              <div class="text-title">Name</div>
+              <div class="text-content"></div>
+            </div>
+            <div class="text-box">
+              <div class="text-title">Name</div>
+              <div class="text-content"></div>
+            </div>
+          </div>
+          <div class="modal-photo-container">
+            <div class="photo-box"><img src="" alt="photo1" /></div>
+            <div class="photo-box"><img src="" alt="photo2" /></div>
+            <div class="photo-box"><img src="" alt="photo3" /></div>
+          </div>
+        </div>
+        <div class="modal-content-box-right">
+          <div class="modal-text-container"></div>
+          <div class="modal-photo-container">
+            <img src="" alt="main-photo" />
+          </div>
+        </div>
+        <button class="close-btn modal-close">X</button>
+      </div>
+    </div>
+
+    <script src="./js/memberData.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const modal = document.getElementById("modal-template");
+
+        const nameText = modal.querySelector(
+          ".modal-content-box-right > .modal-text-container"
+        );
+        const textContents = modal.querySelectorAll(".text-content");
+        const photoBoxes = modal.querySelectorAll(".photo-box img");
+        const mainPhoto = modal.querySelector(
+          ".modal-content-box-right .modal-photo-container img"
+        );
+        const gradientTargets = [
+          modal.querySelector(".modal-content-container"),
+          modal.querySelector(
+            ".modal-content-box-right > .modal-text-container"
+          ),
+        ];
+
+        // 카드 6개 이벤트 연결
+        const cards = document.querySelectorAll(".card");
+
+        cards.forEach((card) => {
+          card.addEventListener("click", () => {
+            const memberKey = card.dataset.member;
+            const data = memberData[memberKey];
+
+            if (!data) return;
+
+            // 이름 텍스트
+            nameText.innerText = data.name;
+
+            // 텍스트 박스 채우기
+            textContents.forEach((el, i) => {
+              el.innerText = data.textContents[i] || "";
+            });
+
+            // 사진들 채우기
+            photoBoxes.forEach((imgEl, i) => {
+              imgEl.src = data.images[i] || "";
+            });
+            mainPhoto.src = data.images[0] || "";
+
+            // 그라디언트 배경 적용
+            gradientTargets.forEach((gradientTarget) => {
+              gradientTarget.style.background = `linear-gradient(180deg, ${data.gradient[0]} 0%, #fff 25%, #fff 73.56%, ${data.gradient[1]} 100%)`;
+            });
+            // 모달 열기
+            modal.classList.remove("hidden");
+          });
+        });
+
+        // 닫기 버튼
+        document.querySelectorAll(".modal-close").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            modal.classList.add("hidden");
+          });
+        });
+
+        // 오버레이 클릭 시 모달 닫기
+        document.querySelectorAll(".modal-overlay").forEach((overlay) => {
+          overlay.addEventListener("click", () => {
+            overlay.closest(".modal").classList.add("hidden");
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

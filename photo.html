@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wish Upon a Star⛧</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/photo.css" />
+  </head>
+  <body>
+    <header>
+      <a href="./index.html">
+        <div class="logo-container">
+          <img
+            class="logo-img"
+            src="./images/wish_upon_a_star_logo.svg"
+            alt="Wish Upon a Star Logo"
+            width="100%"
+          />
+        </div>
+      </a>
+      <div class="tab-menu-container">
+        <a href="./our-wish.html" class="tab-menu-item">Our Wish</a>
+        <a href="./photo.html" class="tab-menu-item active">Photo</a>
+        <a href="./music.html" class="tab-menu-item">Music</a>
+        <a href="./todays-wish.html" class="tab-menu-item">Today's Wish</a>
+      </div>
+    </header>
+    <main>
+      <div class="frame">
+        <div class="main-container">
+          <img class="sparkle-bg" src="./images/sparkle.gif" alt="sparkle-bg" />
+          <img
+            class="star-1-bg"
+            src="./images/silver-star-1.png"
+            alt="silver-star-1"
+          />
+          <img
+            class="star-2-bg"
+            src="./images/silver-star-2.png"
+            alt="silver-star-2"
+            width="400px"
+          />
+          <button class="left-button">
+            <img src="./images/photo-carousel-btn-left.png" alt="left-button" />
+          </button>
+          <div class="image-container">
+            <div class="top-container">
+              <img src="./images/photo-top-text.png" alt="wish for our wish" />
+              <img src="./images/photo-top-button.png" alt="buttons" />
+            </div>
+            <div class="image-wrapper">
+              <img src="./images/sg/단체5.jfif" alt="photo" />
+              <button id="zoomBtn" class="photo-zoom-btn">
+                <img src="./images/photo-zoom-btn.png" alt="zoom-button" />
+              </button>
+            </div>
+          </div>
+          <button class="right-button">
+            <img
+              src="./images/photo-carousel-btn-right.png"
+              alt="right-button"
+            />
+          </button>
+        </div>
+      </div>
+    </main>
+    <div id="modal" class="modal hidden">
+      <div class="modal-overlay"></div>
+      <div class="modal-content-container">
+        <div class="modal-image-wrapper">
+          <img src="./images/sg/사쿠야8.jfif" alt="modal-image" />
+          <button id="closeModal" class="close-btn">
+            <img src="./images/photo-close-btn.png" alt="close-btn" />
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="./js/photo-image-list.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let currentIndex = 0;
+
+        const imageElement = document.querySelector(".image-wrapper img");
+        const modalImage = document.querySelector(".modal-image-wrapper img");
+
+        const modal = document.getElementById("modal");
+        const closeBtn = document.getElementById("closeModal");
+        const zoomBtn = document.getElementById("zoomBtn");
+
+        document.querySelector(".left-button").addEventListener("click", () => {
+          currentIndex = (currentIndex - 1 + images.length) % images.length;
+          updateImage();
+        });
+
+        document
+          .querySelector(".right-button")
+          .addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateImage();
+          });
+
+        function updateImage() {
+          imageElement.src = images[currentIndex];
+        }
+
+        zoomBtn.addEventListener("click", () => {
+          modalImage.src = images[currentIndex];
+          modal.classList.remove("hidden");
+        });
+
+        closeBtn.addEventListener("click", () => {
+          modal.classList.add("hidden");
+        });
+
+        modal
+          .querySelector(".modal-content-container")
+          .addEventListener("click", () => {
+            modal.classList.add("hidden");
+          });
+
+        modal
+          .querySelector(".modal-image-wrapper")
+          .addEventListener("click", (e) => {
+            e.stopPropagation();
+          });
+      });
+    </script>
+  </body>
+</html>
