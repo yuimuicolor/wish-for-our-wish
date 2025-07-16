@@ -5,16 +5,18 @@ const memberData = {
       "#AA80FF",
       "#7A44E6"
     ],
+    "textColor" : "#7A44E6",
     "textContents": [
-      "시온 내용 1",
-      "시온 내용 2",
-      "시온 내용 3",
-      "시온 내용 4"
+      "시온 SION シオン",
+      "2002.05.11",
+      "Mokpo, Korea",
+      "🌷"
     ],
+    "mainImage": "./images/ourwish/sion.jpg",
     "images": [
-      "./images/ourwish/ourwish-sion-1.png",
-      "./images/ourwish/ourwish-sion-2.png",
-      "./images/ourwish/ourwish-sion-3.png"
+      "./images/ourwish/sion2.jpg",
+      "./images/ourwish/sion3.jpg",
+      "./images/ourwish/sion4.jpg"
     ]
   },
   "riku": {
@@ -23,16 +25,18 @@ const memberData = {
       "#F6527B",
       "#E33560"
     ],
+    "textColor" : "#E33560",
     "textContents": [
-      "리쿠 내용 1",
-      "리쿠 내용 2",
-      "리쿠 내용 3",
-      "리쿠 내용 4"
+      "리쿠 RIKU リク",
+      "2003.06.28",
+      "Fukui, Japan",
+      "🐿️🐈‍⬛"
     ],
+    "mainImage": "./images/ourwish/riku.jpg",
     "images": [
-      "./images/ourwish/ourwish-riku-1.png",
-      "./images/ourwish/ourwish-riku-2.png",
-      "./images/ourwish/ourwish-riku-3.png"
+      "./images/ourwish/riku2.jfif",
+      "./images/ourwish/riku3.jfif",
+      "./images/ourwish/riku4.jfif"
     ]
   },
   "yushi": {
@@ -41,16 +45,18 @@ const memberData = {
       "#35B8EB",
       "#2D9ECA"
     ],
+    "textColor" : "#2D9ECA",
     "textContents": [
-      "유우시 내용 1",
-      "유우시 내용 2",
-      "유우시 내용 3",
-      "유우시 내용 4"
+      "유우시 YUSHI ユウシ",
+      "2004.04.05",
+      "Tokyo, Japan",
+      "⭐🐈"
     ],
+    "mainImage": "./images/ourwish/yushi.jpg",
     "images": [
-      "./images/ourwish/ourwish-yushi-1.png",
-      "./images/ourwish/ourwish-yushi-2.png",
-      "./images/ourwish/ourwish-yushi-3.png"
+      "./images/ourwish/yushi2.jfif",
+      "./images/ourwish/yushi3.jfif",
+      "./images/ourwish/yushi4.jfif"
     ]
   },
   "jaehee": {
@@ -59,16 +65,18 @@ const memberData = {
       "#47F058",
       "#1ACA2C"
     ],
+    "textColor" : "#1ACA2C",
     "textContents": [
-      "재희 내용 1",
-      "재희 내용 2",
-      "재희 내용 3",
-      "재희 내용 4"
+      "재희 JAEHEE ジェヒ",
+      "2005.06.21",
+      "Daegu, Korea",
+      "🌳"
     ],
+    "mainImage": "./images/ourwish/jaehee.jpg",
     "images": [
-      "./images/ourwish/ourwish-jaehee-1.png",
-      "./images/ourwish/ourwish-jaehee-2.png",
-      "./images/ourwish/ourwish-jaehee-3.png"
+      "./images/ourwish/jaehee2.jfif",
+      "./images/ourwish/jaehee3.jfif",
+      "./images/ourwish/jaehee4.jfif"
     ]
   },
   "ryo": {
@@ -77,16 +85,18 @@ const memberData = {
       "#DBEB28",
       "#CDDE19"
     ],
+    "textColor" : "#CDDE19",
     "textContents": [
-      "료 내용 1",
-      "료 내용 2",
-      "료 내용 3",
-      "료 내용 4"
+      "료 RYO リョウ",
+      "2007.08.04",
+      "Kyoto, Japan",
+      "🦭"
     ],
+    "mainImage": "./images/ourwish/ryo.jpg",
     "images": [
-      "./images/ourwish/ourwish-ryo-1.png",
-      "./images/ourwish/ourwish-ryo-2.png",
-      "./images/ourwish/ourwish-ryo-3.png"
+      "./images/ourwish/ryo2.jpg",
+      "./images/ourwish/ryo3.jpg",
+      "./images/ourwish/ryo4.jpg"
     ]
   },
   "sakuya": {
@@ -95,16 +105,18 @@ const memberData = {
       "#FF5ACB",
       "#EF00A4"
     ],
+    "textColor" : "#EF00A4",
     "textContents": [
-      "사쿠야 내용 1",
-      "사쿠야 내용 2",
-      "사쿠야 내용 3",
-      "사쿠야 내용 4"
+      "사쿠야 SAKUYA サクヤ",
+      "2007.11.18",
+      "Saitama, Japan",
+      "🥐🐼"
     ],
+    "mainImage": "./images/ourwish/sakuya.jpg",
     "images": [
-      "./images/ourwish/ourwish-sakuya-1.png",
-      "./images/ourwish/ourwish-sakuya-2.png",
-      "./images/ourwish/ourwish-sakuya-3.png"
+      "./images/ourwish/sakuya2.jpg",
+      "./images/ourwish/sakuya3.jpg",
+      "./images/ourwish/sakuya4.jpg"
     ]
   }
 };

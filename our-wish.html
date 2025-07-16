@@ -87,15 +87,15 @@
               <div class="text-content"></div>
             </div>
             <div class="text-box">
-              <div class="text-title">Name</div>
+              <div class="text-title">Birth</div>
               <div class="text-content"></div>
             </div>
             <div class="text-box">
-              <div class="text-title">Name</div>
+              <div class="text-title">From</div>
               <div class="text-content"></div>
             </div>
             <div class="text-box">
-              <div class="text-title">Name</div>
+              <div class="text-title">Mark</div>
               <div class="text-content"></div>
             </div>
           </div>
@@ -106,12 +106,29 @@
           </div>
         </div>
         <div class="modal-content-box-right">
-          <div class="modal-text-container"></div>
+          <div class="modal-text-container">
+            <span class="modal-name"></span>
+          </div>
           <div class="modal-photo-container">
             <img src="" alt="main-photo" />
           </div>
         </div>
-        <button class="close-btn modal-close">X</button>
+        <button class="close-btn modal-close">
+          <img src="images/card-close-btn.png" alt="close-btn" />
+        </button>
+      </div>
+    </div>
+
+    <!-- 이미지 확대용 모달 -->
+    <div id="photoModal" class="modal hidden">
+      <div class="modal-overlay"></div>
+      <div class="modal-content-container">
+        <div class="modal-image-wrapper">
+          <img id="photoModalImg" src="" alt="modal-image" />
+          <button class="modal-photo-close">
+            <img src="./images/photo-close-btn-2.png" alt="close-btn" />
+          </button>
+        </div>
       </div>
     </div>
 
@@ -119,68 +136,103 @@
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const modal = document.getElementById("modal-template");
+        const photoModal = document.getElementById("photoModal");
+        const photoModalImg = document.getElementById("photoModalImg");
 
-        const nameText = modal.querySelector(
-          ".modal-content-box-right > .modal-text-container"
-        );
+        const textTitles = modal.querySelectorAll(".text-title");
         const textContents = modal.querySelectorAll(".text-content");
         const photoBoxes = modal.querySelectorAll(".photo-box img");
         const mainPhoto = modal.querySelector(
           ".modal-content-box-right .modal-photo-container img"
         );
-        const gradientTargets = [
-          modal.querySelector(".modal-content-container"),
-          modal.querySelector(
-            ".modal-content-box-right > .modal-text-container"
-          ),
-        ];
-
-        // 카드 6개 이벤트 연결
+        const gradientTarget = modal.querySelector(".modal-content-container");
+        const nameSpan = modal.querySelector(".modal-name");
         const cards = document.querySelectorAll(".card");
 
+        // 💫 멤버 상세 모달 열기
+        const openMemberModal = (memberKey) => {
+          const data = memberData[memberKey];
+          if (!data) return;
+
+          // 텍스트 색상 & 내용 적용
+          textTitles.forEach(
+            (el) => (el.style.color = data.textColor || "#000")
+          );
+          textContents.forEach((el, i) => {
+            el.innerText = data.textContents[i] || "";
+          });
+
+          // 사진 적용
+          photoBoxes.forEach((imgEl, i) => {
+            imgEl.src = data.images[i] || "";
+          });
+          mainPhoto.src = data.mainImage || "";
+
+          // 그라디언트 배경
+          gradientTarget.style.background = `linear-gradient(180deg, ${data.gradient[0]} 0%, #fff 25%, #fff 73.56%, ${data.gradient[1]} 100%)`;
+
+          // 이름 텍스트
+          nameSpan.innerText = data.name;
+          nameSpan.style.fontSize =
+            memberKey === "sakuya"
+              ? "62px"
+              : memberKey === "jaehee"
+              ? "68px"
+              : "80px";
+
+          // 이름 그라디언트
+          nameSpan.style.background = `linear-gradient(180deg, ${data.gradient[0]} 0%, #fff 50%, ${data.gradient[1]} 100%)`;
+          nameSpan.style.webkitBackgroundClip = "text";
+          nameSpan.style.backgroundClip = "text";
+          nameSpan.style.webkitTextFillColor = "transparent";
+
+          modal.classList.remove("hidden");
+        };
+
+        // 💫 이미지 클릭 시 확대 모달 열기
+        const openPhotoModal = (src) => {
+          if (!src) return;
+          photoModalImg.src = src;
+          photoModal.classList.remove("hidden");
+        };
+        
+        mainPhoto.addEventListener("click", () => {
+      openPhotoModal(mainPhoto.src);
+    });
+
+
+        // 💫 공통 모달 닫기 처리
+        const setupModalClose = (modalElement, closeSelector) => {
+          modalElement.querySelectorAll(closeSelector).forEach((btn) => {
+            btn.addEventListener("click", () => {
+              modalElement.classList.add("hidden");
+            });
+          });
+
+          modalElement.querySelectorAll(".modal-overlay").forEach((overlay) => {
+            overlay.addEventListener("click", () => {
+              modalElement.classList.add("hidden");
+            });
+          });
+        };
+
+        // 💫 이벤트 연결
         cards.forEach((card) => {
           card.addEventListener("click", () => {
-            const memberKey = card.dataset.member;
-            const data = memberData[memberKey];
-
-            if (!data) return;
-
-            // 이름 텍스트
-            nameText.innerText = data.name;
-
-            // 텍스트 박스 채우기
-            textContents.forEach((el, i) => {
-              el.innerText = data.textContents[i] || "";
-            });
-
-            // 사진들 채우기
-            photoBoxes.forEach((imgEl, i) => {
-              imgEl.src = data.images[i] || "";
-            });
-            mainPhoto.src = data.images[0] || "";
-
-            // 그라디언트 배경 적용
-            gradientTargets.forEach((gradientTarget) => {
-              gradientTarget.style.background = `linear-gradient(180deg, ${data.gradient[0]} 0%, #fff 25%, #fff 73.56%, ${data.gradient[1]} 100%)`;
-            });
-            // 모달 열기
-            modal.classList.remove("hidden");
+            openMemberModal(card.dataset.member);
           });
         });
 
-        // 닫기 버튼
-        document.querySelectorAll(".modal-close").forEach((btn) => {
-          btn.addEventListener("click", () => {
-            modal.classList.add("hidden");
+        photoBoxes.forEach((imgEl) => {
+          imgEl.addEventListener("click", () => {
+            openPhotoModal(imgEl.src);
           });
         });
 
-        // 오버레이 클릭 시 모달 닫기
-        document.querySelectorAll(".modal-overlay").forEach((overlay) => {
-          overlay.addEventListener("click", () => {
-            overlay.closest(".modal").classList.add("hidden");
-          });
-        });
+
+        // 닫기 이벤트 설정
+        setupModalClose(modal, ".modal-close");
+        setupModalClose(photoModal, ".modal-photo-close");
       });
     </script>
   </body>

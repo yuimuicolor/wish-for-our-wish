@@ -140,9 +140,35 @@
 }
 
 
-.close-btn {
+.modal-photo-close {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
   cursor: pointer;
+  z-index: 2;
+}
+
+/* X 선 두 줄 만들기 */
+.modal-photo-close::before,
+.modal-photo-close::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 24px;
+  height: 2px;
+  background-color: white; /* ✨ 흰색 X */
+  transform-origin: center;
+}
+
+.modal-photo-close::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.modal-photo-close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
 }
