@@ -264,3 +264,86 @@
   align-items: center;
   gap: 12px;
 }
+
+.playlist-title-container {
+  position: relative;
+  display: flex;
+  width: 100%;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  color: #666;
+  border: 1px solid #999;
+  background: linear-gradient(90deg, #ddd 0%, #fff 10%, #fff 90%, #ddd 100%);
+  font-family: DOSIyagiBoldface;
+  font-size: var(--font-20);
+  letter-spacing: -1px;
+}
+
+.wichu-pixel-deco {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  width: 109px;
+  height: 73px;
+
+  > img {
+    width: 109px;
+    height: 73px;
+    flex-shrink: 0;
+    aspect-ratio: 109/73;
+  }
+}
+
+.playlist-list-container {
+  width: calc(100% - 32px);
+  height: 100%;
+  margin: 16px;
+  border-radius: 10px;
+  border: 1px solid #666;
+  background: linear-gradient(0deg, #727bfa 0%, #ac53ff 100%);
+  box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+.list-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 24px 16px;
+}
+
+.list-item {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  padding: 0px 10px;
+
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  font-family: DOSIyagiBoldface;
+  font-size: var(--font-20);
+
+  letter-spacing: 0.48px;
+
+  border-bottom: 1px solid #fff;
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.list-item:hover {
+  background: rgba(256, 256, 256, 0.1);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.now-playing {
+  background: rgba(256, 256, 256, 0.4);
+}
