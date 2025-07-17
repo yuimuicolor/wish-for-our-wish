@@ -41,90 +41,116 @@
             alt="silver-star-2"
             width="400px"
           />
-          <button class="left-button">
-            <img src="./images/photo-carousel-btn-left.png" alt="left-button" />
-          </button>
-          <div class="image-container">
+          <div class="music-player-container">
             <div class="top-container">
-              <img src="./images/photo-top-text.png" alt="wish for our wish" />
-              <img src="./images/photo-top-button.png" alt="buttons" />
+              <div class="circles">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                >
+                  <circle cx="6" cy="6" r="6" fill="#8B88E2" />
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                >
+                  <circle cx="6" cy="6" r="6" fill="#8B88E2" />
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                >
+                  <circle cx="6" cy="6" r="6" fill="#8B88E2" />
+                </svg>
+              </div>
+              <div class="main-title">♪ Wish Music Box ♬</div>
+              <div class="circles">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                >
+                  <circle cx="6" cy="6" r="6" fill="#8B88E2" /></svg
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                >
+                  <circle cx="6" cy="6" r="6" fill="#8B88E2" /></svg
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                >
+                  <circle cx="6" cy="6" r="6" fill="#8B88E2" />
+                </svg>
+              </div>
             </div>
-            <div class="image-wrapper">
-              <img src="./images/sg/단체5.jfif" alt="photo" />
-              <button id="zoomBtn" class="photo-zoom-btn">
-                <img src="./images/photo-zoom-btn.png" alt="zoom-button" width="40px"/>
-              </button>
+            <div class="content-container">
+              <div class="player-container">
+                <div class="player-box">
+                  <div class="player-left-box">
+                  <!-- 시간, 상태 표시 -->
+                    <div class="time-box">
+                      <div class="status-icon">
+                        <img
+                          src="./images/music/icon-play.png"
+                          alt="Play Icon"
+                        />
+                        <!-- <img
+                          src="./images/music/icon-pause.png"
+                          alt="Pause Icon"
+                          /> -->
+                      </div>
+                      <!-- 시간 표시 -->
+                      <div class="playing-time-title"><span>06:48</span></div>
+                    </div>
+                    <!-- 음악 파동 표시 -->
+                    <div>
+                        <img src="./images/music/audio-wave.gif" alt="" height="90%">
+                    </div>
+                  </div>
+                  <div class="player-right-box">
+                    <div class="music-title">
+                      <span class="title-text">Wish Upon a Star (Japanese Ver.)</span>
+                    </div>
+                    <div class="likes-box">
+                      <span>♥</span>
+                      <span class="like-count">1,234</span>
+                    </div>
+                  </div>
+                  <!-- 음량조절기 -->
+                  <div class="volume-box">
+                    <div class="volume-bar">
+                      <div class="volume-pointer">
+                        <img
+                          src="./images/music/wichu-pixel-xs.png"
+                          alt="Volume Icon"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <button class="right-button">
-            <img
-              src="./images/photo-carousel-btn-right.png"
-              alt="right-button"
-            />
-          </button>
         </div>
       </div>
     </main>
-    <div id="modal" class="modal hidden">
-      <div class="modal-overlay"></div>
-      <div class="modal-content-container">
-        <div class="modal-image-wrapper">
-          <img src="./images/sg/사쿠야8.jfif" alt="modal-image" />
-          <button id="closeModal" class="close-btn">
-            <img src="./images/photo-close-btn.png" alt="close-btn" />
-          </button>
-        </div>
-      </div>
-    </div>
-    <script src="./js/photo-image-list.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        let currentIndex = 0;
-
-        const imageElement = document.querySelector(".image-wrapper img");
-        const modalImage = document.querySelector(".modal-image-wrapper img");
-
-        const modal = document.getElementById("modal");
-        const closeBtn = document.getElementById("closeModal");
-        const zoomBtn = document.getElementById("zoomBtn");
-
-        document.querySelector(".left-button").addEventListener("click", () => {
-          currentIndex = (currentIndex - 1 + images.length) % images.length;
-          updateImage();
-        });
-
-        document
-          .querySelector(".right-button")
-          .addEventListener("click", () => {
-            currentIndex = (currentIndex + 1) % images.length;
-            updateImage();
-          });
-
-        function updateImage() {
-          imageElement.src = images[currentIndex];
-        }
-
-        zoomBtn.addEventListener("click", () => {
-          modalImage.src = images[currentIndex];
-          modal.classList.remove("hidden");
-        });
-
-        closeBtn.addEventListener("click", () => {
-          modal.classList.add("hidden");
-        });
-
-        modal
-          .querySelector(".modal-content-container")
-          .addEventListener("click", () => {
-            modal.classList.add("hidden");
-          });
-
-        modal
-          .querySelector(".modal-image-wrapper")
-          .addEventListener("click", (e) => {
-            e.stopPropagation();
-          });
-      });
-    </script>
   </body>
 </html>
