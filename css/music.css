@@ -51,7 +51,7 @@
 .music-player-container {
   display: flex;
   width: 600px;
-  height: 714px;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
@@ -223,13 +223,52 @@
 
 .music-title {
   width: 100%;
+  overflow: hidden;
   white-space: nowrap;
+  position: relative;
   color: #fff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   font-family: DOSIyagiBoldface;
   font-size: var(font-24);
   letter-spacing: 0.48px;
 }
+
+.title-text {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.title-text.scrolling-title {
+  animation: scroll-title 12s linear infinite;
+}
+
+@keyframes scroll-title {
+  0% {
+    transform: translateX(0%);
+  }
+  10% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* ✅ 플레이리스트용 제목 (시간 침범 방지) */
+.list-title-wrapper {
+  overflow: hidden;
+  flex: 1;
+}
+
+.list-title {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.list-title.scrolling-title {
+  animation: scroll-title 10s linear infinite;
+}
+
 
 .likes-box {
   color: #e35555;
@@ -297,8 +336,8 @@
 
 .playlist-list-container {
   width: calc(100% - 32px);
-  height: 100%;
   margin: 16px;
+  overflow: hidden;
   border-radius: 10px;
   border: 1px solid #666;
   background: linear-gradient(0deg, #727bfa 0%, #ac53ff 100%);
@@ -306,18 +345,36 @@
 }
 
 .list-container {
-  width: 100%;
-  height: 100%;
+  max-height: 345px;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   padding: 24px 16px;
 }
+.list-container::-webkit-scrollbar {
+  width: 12px; /* 스크롤바 너비 */
+}
+
+.list-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.3); /* 트랙: 30% 흰색 */
+  border-radius: 9999px;
+}
+
+.list-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 1); /* 핸들: 100% 흰색 */
+  border-radius: 9999px;
+}
+
+.list-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.9); /* 살짝 어둡게 */
+}
 
 .list-item {
   width: 100%;
   height: 40px;
+  min-height: 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -333,6 +390,7 @@
 
   border-bottom: 1px solid #fff;
 }
+
 
 .list-item:last-child {
   border-bottom: none;
