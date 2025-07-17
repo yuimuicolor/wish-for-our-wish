@@ -109,7 +109,7 @@
 
 .player-container {
   width: 100%;
-  padding: 16px;
+  padding: 16px 16px 0px 16px;
   background: linear-gradient(
     81deg,
     #dae9ff 2.09%,
@@ -241,4 +241,26 @@
   > .like-count {
     color: #fff;
   }
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 25px 0px;
+  gap: 30px;
+}
+
+.stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  fill: #9c9acc;
+}
+.button-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
 }
