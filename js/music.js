@@ -70,6 +70,44 @@ const titleText = document.querySelector(".title-text");
 const timeText = document.querySelector(".playing-time-title span");
 const listContainer = document.querySelector(".list-container");
 
+const volumeBar = document.querySelector(".volume-bar");
+const volumePointer = document.querySelector(".volume-pointer");
+
+let isDragging = false;
+
+function updateVolume(e) {
+  const barRect = volumeBar.getBoundingClientRect();
+  let x = e.clientX - barRect.left;
+
+  x = Math.max(0, Math.min(x, barRect.width));
+
+  const pointerHalf = volumePointer.offsetWidth / 2;
+  volumePointer.style.left = `${x - pointerHalf}px`;
+
+  const volume = x / barRect.width;
+  audio.volume = volume;
+}
+
+// 드래그 시작
+volumeBar.addEventListener("mousedown", (e) => {
+  isDragging = true;
+  updateVolume(e);
+  document.body.style.userSelect = "none";
+});
+
+// 드래그 중
+document.addEventListener("mousemove", (e) => {
+  if (!isDragging) return;
+  updateVolume(e);
+});
+
+// 드래그 끝
+document.addEventListener("mouseup", () => {
+  isDragging = false;
+  document.body.style.userSelect = "";
+});
+
+
 function renderPlaylist() {
   listContainer.innerHTML = "";
   songs.forEach((song, index) => {
@@ -162,9 +200,23 @@ function playPrev() {
   }
 }
 
+
+// 첫 볼륨 세팅
+function setPointerByVolume(volume) {
+  const barWidth = volumeBar.offsetWidth;
+  const pointerHalf = volumePointer.offsetWidth / 2;
+  const x = barWidth * volume;
+  volumePointer.style.left = `${x - pointerHalf}px`;
+}
+
+
+
 playButton.addEventListener("click", togglePlayPause);
 nextButton.addEventListener("click", playNext);
 prevButton.addEventListener("click", playPrev);
 
 renderPlaylist();
+setPointerByVolume(audio.volume);
 updateUI();
+
+
