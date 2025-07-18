@@ -1,3 +1,24 @@
+@font-face {
+  font-family: "DNF Bit Bit v2";
+  src: url("../assets/fonts/DNFBitBitv2.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DOSGothic";
+  src: url("../assets/fonts/DOSGothic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DOSIyagiBoldface";
+  src: url("../assets/fonts/DOSIyagiBoldface.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   /* 색상 변수 */
   --color-white: #ffffff;
@@ -19,5 +40,4 @@
   --font-24: 2.4rem; /* 24px */
   --font-32: 3.2rem; /* 32px */
   --font-42: 4.2rem; /* 42px */
-
 }

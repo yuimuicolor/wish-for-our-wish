@@ -146,7 +146,7 @@ function renderPlaylist() {
 
     const time = document.createElement("div");
     time.classList.add("list-time");
-    time.innerHTML = `<span>00:00</span>`;
+    time.innerHTML = `<span>${song.duration}</span>`;
 
     titleWrapper.appendChild(title);
     item.appendChild(titleWrapper);
