@@ -13,7 +13,7 @@
         <div class="logo-container">
           <img
             class="logo-img"
-            src="./images/wish_upon_a_star_logo.svg"
+            src="./assets/images/wish_upon_a_star_logo.svg"
             alt="Wish Upon a Star Logo"
             width="100%"
           />
@@ -29,15 +29,15 @@
     <main>
       <div class="frame">
         <div class="main-container">
-          <img class="sparkle-bg" src="./images/sparkle.gif" alt="sparkle-bg" />
+          <img class="sparkle-bg" src="./assets/images/sparkle.gif" alt="sparkle-bg" />
           <img
             class="star-1-bg"
-            src="./images/silver-star-1.png"
+            src="./assets/images/silver-star-1.png"
             alt="silver-star-1"
           />
           <img
             class="star-2-bg"
-            src="./images/silver-star-2.png"
+            src="./assets/images/silver-star-2.png"
             alt="silver-star-2"
             width="400px"
           />
@@ -49,27 +49,27 @@
           </div>
           <div class="card-container">
             <div class="card" data-member="sion">
-              <img src="./images/ourwish-sion-card.png" alt="sion-card" />
+              <img src="./assets/images/ourwish-sion-card.png" alt="sion-card" />
               <span>SION</span>
             </div>
             <div class="card" data-member="riku">
-              <img src="./images/ourwish-riku-card.png" alt="riku-card" />
+              <img src="./assets/images/ourwish-riku-card.png" alt="riku-card" />
               <span>RIKU</span>
             </div>
             <div class="card" data-member="yushi">
-              <img src="./images/ourwish-yushi-card.png" alt="yushi-card" />
+              <img src="./assets/images/ourwish-yushi-card.png" alt="yushi-card" />
               <span>YUSHI</span>
             </div>
             <div class="card" data-member="jaehee">
-              <img src="./images/ourwish-jaehee-card.png" alt="jaehee-card" />
+              <img src="./assets/images/ourwish-jaehee-card.png" alt="jaehee-card" />
               <span>JAEHEE</span>
             </div>
             <div class="card" data-member="ryo">
-              <img src="./images/ourwish-ryo-card.png" alt="ryo-card" />
+              <img src="./assets/images/ourwish-ryo-card.png" alt="ryo-card" />
               <span>RYO</span>
             </div>
             <div class="card" data-member="sakuya">
-              <img src="./images/ourwish-saku-card.png" alt="saku-card" />
+              <img src="./assets/images/ourwish-saku-card.png" alt="saku-card" />
               <span>SAKU</span>
             </div>
           </div>
@@ -114,7 +114,7 @@
           </div>
         </div>
         <button class="close-btn modal-close">
-          <img src="images/card-close-btn.png" alt="close-btn" />
+          <img src="./assets/images/card-close-btn.png" alt="close-btn" />
         </button>
       </div>
     </div>
@@ -126,114 +126,11 @@
         <div class="modal-image-wrapper">
           <img id="photoModalImg" src="" alt="modal-image" />
           <button class="modal-photo-close">
-            <img src="./images/photo-close-btn-2.png" alt="close-btn" />
+            <img src="./assets/images/photo-close-btn-2.png" alt="close-btn" />
           </button>
         </div>
       </div>
     </div>
-
-    <script src="./js/memberData.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const modal = document.getElementById("modal-template");
-        const photoModal = document.getElementById("photoModal");
-        const photoModalImg = document.getElementById("photoModalImg");
-
-        const textTitles = modal.querySelectorAll(".text-title");
-        const textContents = modal.querySelectorAll(".text-content");
-        const photoBoxes = modal.querySelectorAll(".photo-box img");
-        const mainPhoto = modal.querySelector(
-          ".modal-content-box-right .modal-photo-container img"
-        );
-        const gradientTarget = modal.querySelector(".modal-content-container");
-        const nameSpan = modal.querySelector(".modal-name");
-        const cards = document.querySelectorAll(".card");
-
-        // 💫 멤버 상세 모달 열기
-        const openMemberModal = (memberKey) => {
-          const data = memberData[memberKey];
-          if (!data) return;
-
-          // 텍스트 색상 & 내용 적용
-          textTitles.forEach(
-            (el) => (el.style.color = data.textColor || "#000")
-          );
-          textContents.forEach((el, i) => {
-            el.innerText = data.textContents[i] || "";
-          });
-
-          // 사진 적용
-          photoBoxes.forEach((imgEl, i) => {
-            imgEl.src = data.images[i] || "";
-          });
-          mainPhoto.src = data.mainImage || "";
-
-          // 그라디언트 배경
-          gradientTarget.style.background = `linear-gradient(180deg, ${data.gradient[0]} 0%, #fff 25%, #fff 73.56%, ${data.gradient[1]} 100%)`;
-
-          // 이름 텍스트
-          nameSpan.innerText = data.name;
-          nameSpan.style.fontSize =
-            memberKey === "sakuya"
-              ? "62px"
-              : memberKey === "jaehee"
-              ? "68px"
-              : "80px";
-
-          // 이름 그라디언트
-          nameSpan.style.background = `linear-gradient(180deg, ${data.gradient[0]} 0%, #fff 50%, ${data.gradient[1]} 100%)`;
-          nameSpan.style.webkitBackgroundClip = "text";
-          nameSpan.style.backgroundClip = "text";
-          nameSpan.style.webkitTextFillColor = "transparent";
-
-          modal.classList.remove("hidden");
-        };
-
-        // 💫 이미지 클릭 시 확대 모달 열기
-        const openPhotoModal = (src) => {
-          if (!src) return;
-          photoModalImg.src = src;
-          photoModal.classList.remove("hidden");
-        };
-        
-        mainPhoto.addEventListener("click", () => {
-      openPhotoModal(mainPhoto.src);
-    });
-
-
-        // 💫 공통 모달 닫기 처리
-        const setupModalClose = (modalElement, closeSelector) => {
-          modalElement.querySelectorAll(closeSelector).forEach((btn) => {
-            btn.addEventListener("click", () => {
-              modalElement.classList.add("hidden");
-            });
-          });
-
-          modalElement.querySelectorAll(".modal-overlay").forEach((overlay) => {
-            overlay.addEventListener("click", () => {
-              modalElement.classList.add("hidden");
-            });
-          });
-        };
-
-        // 💫 이벤트 연결
-        cards.forEach((card) => {
-          card.addEventListener("click", () => {
-            openMemberModal(card.dataset.member);
-          });
-        });
-
-        photoBoxes.forEach((imgEl) => {
-          imgEl.addEventListener("click", () => {
-            openPhotoModal(imgEl.src);
-          });
-        });
-
-
-        // 닫기 이벤트 설정
-        setupModalClose(modal, ".modal-close");
-        setupModalClose(photoModal, ".modal-photo-close");
-      });
-    </script>
+    <script src="./js/our-wish.js"></script>
   </body>
 </html>

@@ -1,50 +1,50 @@
 // 샘플 음악 데이터
 const songs = [
   {
-    title: "Tears Are Falldddddddddding (Japanese ver.)",
-    duration: "4:25",
-    src: "./music/sample1.mp3",
+    title: "WISH (Korean Version)",
+    duration: "03:05",
+    src: "../assets/musics/WISH (Korean Version).mp3",
   },
   {
-    title: "Shining Star (Korean ver.)",
-    duration: "3:52",
-    src: "./music/sample2.mp3",
+    title: "WISH (Japanese Version)",
+    duration: "03:05",
+    src: "../assets/musics/WISH (Japanese Version).mp3",
   },
   {
-    title: "With U Forever",
-    duration: "5:10",
-    src: "./music/sample3.mp3",
+    title: "Songbird (Korean Version)",
+    duration: "03:01",
+    src: "../assets/musics/Songbird (Korean Version).mp3",
+  },
+  { 
+    title: "Songbird (Japanese Version)",
+    duration: "03:01",
+    src: "../assets/musics/Songbird (Japanese Version).mp3",
   },
   {
-    title: "Tears Are Falldddddddddding (Japanese ver.)",
-    duration: "4:25",
-    src: "./music/sample1.mp3",
+    title: "Dunk Shot",
+    duration: "02:59",
+    src: "../assets/musics/Dunk Shot.mp3",
   },
   {
-    title: "Shining Star (Korean ver.)",
-    duration: "3:52",
-    src: "./music/sample2.mp3",
+    title: "Steady",
+    duration: "02:59",
+    src: "../assets/musics/Steady.mp3",
   },
   {
-    title: "With U Forever",
-    duration: "5:10",
-    src: "./music/sample3.mp3",
+    title: "NASA",
+    duration: "03:03",
+    src: "../assets/musics/NASA.mp3",
   },
   {
-    title: "Tears Are Falldddddddddding (Japanese ver.)",
-    duration: "4:25",
-    src: "./music/sample1.mp3",
+    title: "Melt Inside My Pocket",
+    duration: "03:11",
+    src: "../assets/musics/Melt Inside My Pocket.mp3",
   },
   {
-    title: "Shining Star (Korean ver.)",
-    duration: "3:52",
-    src: "./music/sample2.mp3",
-  },
-  {
-    title: "With U Forever",
-    duration: "5:10",
-    src: "./music/sample3.mp3",
-  },
+    title: "poppop",
+    duration: "03:02",
+    src: "../assets/musics/poppop.mp3",
+  }
 ];
 
 let currentIndex = 0;
@@ -62,10 +62,10 @@ const nextButton = document.querySelector(
   ".button-box .button-item:nth-child(3)"
 );
 const icon = document.querySelector(".status-icon img");
-const playImg = "./images/music/button-play.png";
-const pauseImg = "./images/music/button-pause.png";
-const playIcon = "./images/music/icon-play.png";
-const pauseIcon = "./images/music/icon-pause.png";
+const playImg = "./assets/images/music/button-play.png";
+const pauseImg = "./assets/images/music/button-pause.png";
+const playIcon = "./assets/images/music/icon-play.png";
+const pauseIcon = "./assets/images/music/icon-pause.png";
 const titleText = document.querySelector(".title-text");
 const timeText = document.querySelector(".playing-time-title span");
 const listContainer = document.querySelector(".list-container");
@@ -74,6 +74,28 @@ const volumeBar = document.querySelector(".volume-bar");
 const volumePointer = document.querySelector(".volume-pointer");
 
 let isDragging = false;
+
+audio.addEventListener("ended", () => {
+  if (currentIndex < songs.length - 1) {
+    playNext();
+  } else {
+    // 마지막 곡일 경우 첫 곡으로
+    playSong(0);
+  }
+});
+
+audio.addEventListener("timeupdate", updateCurrentTime);
+
+function updateCurrentTime() {
+  const current = audio.currentTime;
+  const minutes = Math.floor(current / 60);
+  const seconds = Math.floor(current % 60);
+  const formatted =
+    `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+  timeText.textContent = formatted;
+}
+
+
 
 function updateVolume(e) {
   const barRect = volumeBar.getBoundingClientRect();
@@ -87,6 +109,7 @@ function updateVolume(e) {
   const volume = x / barRect.width;
   audio.volume = volume;
 }
+
 
 // 드래그 시작
 volumeBar.addEventListener("mousedown", (e) => {
@@ -123,7 +146,7 @@ function renderPlaylist() {
 
     const time = document.createElement("div");
     time.classList.add("list-time");
-    time.innerHTML = `<span>${song.duration}</span>`;
+    time.innerHTML = `<span>00:00</span>`;
 
     titleWrapper.appendChild(title);
     item.appendChild(titleWrapper);
@@ -145,7 +168,7 @@ function renderPlaylist() {
 function updateUI() {
   const song = songs[currentIndex];
   titleText.textContent = song.title;
-  timeText.textContent = song.duration;
+  timeText.textContent = "00:00";
 
   const allItems = document.querySelectorAll(".list-item");
   allItems.forEach((item, index) => {
@@ -167,11 +190,11 @@ function togglePlayPause() {
   if (isPlaying) {
     audio.pause();
     playButton.querySelector("img").src = playImg;
-    icon.src = playIcon;
+    icon.src = pauseIcon;
   } else {
     audio.play();
     playButton.querySelector("img").src = pauseImg;
-    icon.src = pauseIcon;
+    icon.src = playIcon;
   }
   isPlaying = !isPlaying;
 }
@@ -216,7 +239,8 @@ nextButton.addEventListener("click", playNext);
 prevButton.addEventListener("click", playPrev);
 
 renderPlaylist();
-setPointerByVolume(audio.volume);
+audio.volume = 0.8;
+setPointerByVolume(0.8);
 updateUI();
 
 

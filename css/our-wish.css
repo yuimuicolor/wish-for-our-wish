@@ -261,6 +261,8 @@
   border-radius: 10px;
   border: 2px solid #fff;
   background: url(<path-to-image>) lightgray 50% / cover no-repeat;
+  object-fit: cover;
+  image-rendering: smooth; /* 또는 smooth */
   cursor: pointer;
 }
 
