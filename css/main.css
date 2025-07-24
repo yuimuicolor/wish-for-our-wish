@@ -166,16 +166,11 @@ a {
   pointer-events: none;
   z-index: 0;
 }
-<<<<<<< HEAD
-=======
 
 @media (max-width: 480px) {
-
-
 
   .main-button {
     padding: 10px 50px;
     font-size: var(--font-24);
   }
 }
->>>>>>> dev
