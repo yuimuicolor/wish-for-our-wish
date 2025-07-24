@@ -169,12 +169,23 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.classList.remove("hidden");
   };
 
-  // 💫 이미지 클릭 시 확대 모달 열기
-  const openPhotoModal = (src) => {
-    if (!src) return;
-    photoModalImg.src = src;
-    photoModal.classList.remove("hidden");
+
+const openPhotoModal = (src) => {
+  if (!src) return;
+
+  // 버튼 숨기기 먼저
+  const closeBtn = photoModal.querySelector(".modal-photo-close");
+  closeBtn.style.display = "none";
+
+  // 이미지 로딩 완료 후 버튼 보여주기
+  photoModalImg.onload = () => {
+    closeBtn.style.display = "block";
   };
+
+  photoModalImg.src = src;
+  photoModal.classList.remove("hidden");
+};
+
 
   mainPhoto.addEventListener("click", () => {
     openPhotoModal(mainPhoto.src);
@@ -211,4 +222,34 @@ document.addEventListener("DOMContentLoaded", () => {
   // 닫기 이벤트 설정
   setupModalClose(modal, ".modal-close");
   setupModalClose(photoModal, ".modal-photo-close");
+
+   const allImages = document.querySelectorAll("img");
+
+  allImages.forEach((img) => {
+    const realSrc = img.src;
+
+    // 🔄 진짜 경로 저장하고, 로딩용으로 바꾸기
+    img.dataset.src = realSrc;
+    img.src = "./assets/images/loading.gif"; // 이건 반드시 존재해야 함
+    img.style.opacity = "0"; // 먼저 안보이게
+
+    // 🤖 이미지 프리로드
+    const temp = new Image();
+    temp.onload = () => {
+      img.src = realSrc;
+
+      // ✅ 이미지 교체 후 next frame에 opacity 켜기
+      requestAnimationFrame(() => {
+        img.style.transition = "opacity 0.4s ease-in-out";
+        img.style.opacity = "1";
+      });
+    };
+
+    temp.onerror = () => {
+      img.src = "./assets/images/image-error.png";
+      img.style.opacity = "1";
+    };
+
+    temp.src = realSrc;
+  });
 });

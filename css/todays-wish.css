@@ -300,3 +300,10 @@
   left: 384px;
   z-index: 2;
 }
+
+
+.modal-image-wrapper img,
+#closeModal img {
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
