@@ -1,5 +1,5 @@
 const images = [
-  "./assets/voices/단체5.jfif",
+  "./assets/images/sg/단체5.jfif",
   "./assets/images/sg/단체4.jfif",
   "./assets/images/sg/단체1.jfif",
   "./assets/images/sg/단체3.jfif",
@@ -21,5 +21,5 @@ const images = [
   "./assets/images/sg/료9.jfif",
   "./assets/images/sg/사쿠야1.jfif",
   "./assets/images/sg/사쿠야2.jfif",
-  "./assets/images/sg/사쿠야8.jfif"
+  "./assets/images/sg/사쿠야8.jfif",
 ];
