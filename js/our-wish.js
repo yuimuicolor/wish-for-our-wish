@@ -173,10 +173,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const openPhotoModal = (src) => {
     if (!src) return;
 
+    const photoModalImg = photoModal.querySelector(".modal-photo-img");
     const closeBtn = photoModal.querySelector(".modal-photo-close");
 
     // 초기 상태: 숨기기
-    // photoModalImg.style.opacity = "0";
     closeBtn.style.opacity = "0";
 
     photoModalImg.src = "../assets/images/loading.gif"; // 로딩 이미지로 초기화
