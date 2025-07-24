@@ -384,7 +384,6 @@
   right: 8px;
   cursor: pointer;
   z-index: 2;
-  display: none;
 }
 
 .modal-photo-close img {

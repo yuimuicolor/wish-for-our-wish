@@ -42,10 +42,6 @@ function openRandomModal() {
   modalImg.style.opacity = "0"; // 이미지 먼저 숨김
   closeBtnImg.style.opacity = "0";
 
-  // 먼저 로딩 이미지 표시해도 됨 (선택)
-  modalImg.src = "./assets/images/loading.gif";
-  closeBtnImg.src = "./assets/images/loading.gif";
-
   const realModalImg = `./assets/images/todays-wish/card-${currentMember}.png`;
   const realCloseImg = `./assets/images/todays-wish/close-btn-${currentMember}.png`;
 
