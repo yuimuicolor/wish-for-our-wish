@@ -1,4 +1,4 @@
-const voices = [
+const images = [
   "./assets/voices/단체5.jfif",
   "./assets/images/sg/단체4.jfif",
   "./assets/images/sg/단체1.jfif",
