@@ -149,4 +149,6 @@
   right: 20px;
   z-index: 2;
   cursor: pointer;
+  width: 30px;
+  height: 30px;
 }
