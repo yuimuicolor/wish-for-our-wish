@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("modal-template");
   const photoModal = document.getElementById("photoModal");
   const photoModalImg = document.getElementById("photoModalImg");
-
+ 
   const textTitles = modal.querySelectorAll(".text-title");
   const textContents = modal.querySelectorAll(".text-content");
   const photoBoxes = modal.querySelectorAll(".photo-box img");
@@ -176,10 +176,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeBtn = photoModal.querySelector(".modal-photo-close");
     closeBtn.style.display = "none";
 
-     // 이미지 로딩 완료 후 버튼 보여주기
-  photoModalImg.onload = () => {
-    closeBtn.style.display = "block";
-  };
+    // 이미지 로딩 완료 후 버튼 보여주기
+    photoModalImg.onload = () => {
+   
+      const imgHeight = photoModalImg.clientHeight;
+      const imgTop = photoModalImg.offsetTop;
+
+      // 버튼 위치를 이미지 기준으로 세팅
+      closeBtn.style.top = `${imgTop + 10}px`;
+      closeBtn.style.right = `10px`;
+
+      closeBtn.style.display = "block";
+    };
 
     photoModalImg.src = src;
     photoModal.classList.remove("hidden");

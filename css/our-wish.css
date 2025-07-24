@@ -362,8 +362,6 @@
 /* 이미지 wrapper */
 .modal-image-wrapper {
   position: relative;
-  height: 80vh;
-  max-height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -373,15 +371,15 @@
 .modal-image-wrapper img {
   height: 100%;
   width: auto;
-  max-width: 90vw;
+  max-height: 80vh;
   object-fit: contain;
 }
 
 /* 닫기 버튼 */
 .modal-photo-close {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  /* top: 8px; */
+  /* right: 8px; */
   display: none; /* 기본적으로 숨김 */
   cursor: pointer;
   z-index: 2;
