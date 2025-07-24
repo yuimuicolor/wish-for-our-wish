@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // photoModalImg.style.opacity = "0";
     closeBtn.style.opacity = "0";
 
-    photoModalImg.src = "loading.gif"; // 로딩 이미지로 초기화
+    photoModalImg.src = "../assets/images/loading.gif"; // 로딩 이미지로 초기화
 
     // 이미지 로딩되면 부드럽게 나타나게
     photoModalImg.onload = () => {

@@ -39,11 +39,13 @@ let currentMember = null;
 function openRandomModal() {
   currentMember = members[Math.floor(Math.random() * members.length)];
 
-  modalImg.style.opacity = "0"; // 이미지 먼저 숨김
+  // modalImg.style.opacity = "0"; // 이미지 먼저 숨김
   closeBtnImg.style.opacity = "0";
 
   const realModalImg = `./assets/images/todays-wish/card-${currentMember}.png`;
   const realCloseImg = `./assets/images/todays-wish/close-btn-${currentMember}.png`;
+
+  modalImg.src = "../assets/images/loading.gif"; // 로딩 이미지로 초기화
 
   // 진짜 이미지 미리 로드
   const preloadMain = new Image();
@@ -51,10 +53,10 @@ function openRandomModal() {
 
   preloadMain.onload = () => {
     modalImg.src = realModalImg;
-    requestAnimationFrame(() => {
-      modalImg.style.transition = "opacity 0.4s ease-in-out";
-      modalImg.style.opacity = "1";
-    });
+    // requestAnimationFrame(() => {
+    //   modalImg.style.transition = "opacity 0.4s ease-in-out";
+    //   modalImg.style.opacity = "1";
+    // });
   };
 
   preloadClose.onload = () => {
