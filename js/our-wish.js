@@ -170,29 +170,33 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // 💫 이미지 클릭 시 확대 모달 열기
-const openPhotoModal = (src) => {
-  if (!src) return;
+  const openPhotoModal = (src) => {
+    if (!src) return;
 
-  const closeBtn = photoModal.querySelector(".modal-photo-close");
+    const closeBtn = photoModal.querySelector(".modal-photo-close");
 
-  // 초기 상태: 숨기기
-  photoModalImg.style.opacity = "0";
-  closeBtn.style.opacity = "0";
+    // 초기 상태: 숨기기
+    // photoModalImg.style.opacity = "0";
+    closeBtn.style.opacity = "0";
 
-  // 이미지 로딩되면 부드럽게 나타나게
-  photoModalImg.onload = () => {
-    requestAnimationFrame(() => {
-      photoModalImg.style.transition = "opacity 0.4s ease-in-out";
-      photoModalImg.style.opacity = "1";
+    photoModalImg.src = "loading.gif"; // 로딩 이미지로 초기화
 
-      closeBtn.style.transition = "opacity 0.4s ease-in-out";
-      closeBtn.style.opacity = "1";
-    });
+    // 이미지 로딩되면 부드럽게 나타나게
+    photoModalImg.onload = () => {
+      requestAnimationFrame(() => {
+        // photoModalImg.style.transition = "opacity 0.4s ease-in-out";
+        // photoModalImg.style.opacity = "1";
+
+        closeBtn.style.transition = "opacity 0.4s ease-in-out";
+        closeBtn.style.opacity = "1";
+
+        photoModalImg.src = src;
+      });
+    };
+
+    photoModalImg.src = src;
+    photoModal.classList.remove("hidden");
   };
-
-  photoModalImg.src = src;
-  photoModal.classList.remove("hidden");
-};
 
   mainPhoto.addEventListener("click", () => {
     openPhotoModal(mainPhoto.src);
@@ -229,6 +233,4 @@ const openPhotoModal = (src) => {
   // 닫기 이벤트 설정
   setupModalClose(modal, ".modal-close");
   setupModalClose(photoModal, ".modal-photo-close");
-
-
 });
