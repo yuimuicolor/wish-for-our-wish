@@ -26,17 +26,60 @@ const closeBtnImg = modal.querySelector("#closeModal img");
 const members = ["sion", "riku", "yushi", "jaehee", "ryo", "sakuya"];
 let currentMember = null;
 
+// function openRandomModal() {
+//   currentMember = members[Math.floor(Math.random() * members.length)];
+
+//   modalImg.src = `./assets/images/todays-wish/card-${currentMember}.png`;
+//   closeBtnImg.src = `./assets/images/todays-wish/close-btn-${currentMember}.png`;
+
+//   modal.classList.remove("hidden");
+//   document.body.style.overflow = "hidden";
+// }
+
 function openRandomModal() {
   currentMember = members[Math.floor(Math.random() * members.length)];
 
-  modalImg.src = `./assets/images/todays-wish/card-${currentMember}.png`;
-  closeBtnImg.src = `./assets/images/todays-wish/close-btn-${currentMember}.png`;
+  modalImg.style.opacity = "0"; // 이미지 먼저 숨김
+  closeBtnImg.style.opacity = "0";
+
+  // 먼저 로딩 이미지 표시해도 됨 (선택)
+  modalImg.src = "./assets/images/loading.gif";
+  closeBtnImg.src = "./assets/images/loading.gif";
+
+  const realModalImg = `./assets/images/todays-wish/card-${currentMember}.png`;
+  const realCloseImg = `./assets/images/todays-wish/close-btn-${currentMember}.png`;
+
+  // 진짜 이미지 미리 로드
+  const preloadMain = new Image();
+  const preloadClose = new Image();
+
+  preloadMain.onload = () => {
+    modalImg.src = realModalImg;
+    requestAnimationFrame(() => {
+      modalImg.style.transition = "opacity 0.4s ease-in-out";
+      modalImg.style.opacity = "1";
+    });
+  };
+
+  preloadClose.onload = () => {
+    closeBtnImg.src = realCloseImg;
+    requestAnimationFrame(() => {
+      closeBtnImg.style.transition = "opacity 0.4s ease-in-out";
+      closeBtnImg.style.opacity = "1";
+    });
+  };
+
+  preloadMain.src = realModalImg;
+  preloadClose.src = realCloseImg;
 
   modal.classList.remove("hidden");
   document.body.style.overflow = "hidden";
 }
 
-document.querySelector(".start-button").addEventListener("click", openRandomModal);
+
+document
+  .querySelector(".start-button")
+  .addEventListener("click", openRandomModal);
 
 document.getElementById("closeModal").addEventListener("click", () => {
   modal.classList.add("hidden");
@@ -48,9 +91,11 @@ modal.addEventListener("click", () => {
   document.body.style.overflow = "auto";
 });
 
-modal.querySelector(".modal-content-container").addEventListener("click", (e) => {
-  e.stopPropagation();
-});
+modal
+  .querySelector(".modal-content-container")
+  .addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
 
 // 보이스 버튼
 const voiceButtons = document.querySelectorAll(".voice-button");
@@ -60,7 +105,9 @@ voiceButtons.forEach((btn, index) => {
     if (!currentMember) return;
 
     const voiceIndex = index + 1;
-    const audio = new Audio(`../assets/voices/${currentMember}_${voiceIndex}.m4a`);
+    const audio = new Audio(
+      `../assets/voices/${currentMember}_${voiceIndex}.m4a`
+    );
     audio.play();
   });
 });
