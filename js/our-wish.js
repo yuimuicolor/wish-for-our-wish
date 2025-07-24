@@ -10,6 +10,11 @@ const memberData = {
       "./assets/images/ourwish/sion3.jpg",
       "./assets/images/ourwish/sion4.jpg",
     ],
+    smallImages: [
+      "./assets/images/ourwish/small-sion2.jpg",
+      "./assets/images/ourwish/small-sion3.jpg",
+      "./assets/images/ourwish/small-sion4.jpg",
+    ],
   },
   riku: {
     name: "RIKU",
@@ -21,6 +26,11 @@ const memberData = {
       "./assets/images/ourwish/riku2.jfif",
       "./assets/images/ourwish/riku3.jfif",
       "./assets/images/ourwish/riku4.jfif",
+    ],
+    smallImages: [
+      "./assets/images/ourwish/small-riku2.jpg",
+      "./assets/images/ourwish/small-riku3.jpg",
+      "./assets/images/ourwish/small-riku4.jpg",
     ],
   },
   yushi: {
@@ -34,6 +44,11 @@ const memberData = {
       "./assets/images/ourwish/yushi3.jfif",
       "./assets/images/ourwish/yushi4.jfif",
     ],
+    smallImages: [
+      "./assets/images/ourwish/small-yushi2.jpg",
+      "./assets/images/ourwish/small-yushi3.jpg",
+      "./assets/images/ourwish/small-yushi4.jpg",
+    ],
   },
   jaehee: {
     name: "JAEHEE",
@@ -46,6 +61,11 @@ const memberData = {
       "./assets/images/ourwish/jaehee3.jfif",
       "./assets/images/ourwish/jaehee4.jfif",
     ],
+    smallImages: [
+      "./assets/images/ourwish/small-jaehee2.jpg",
+      "./assets/images/ourwish/small-jaehee3.jpg",
+      "./assets/images/ourwish/small-jaehee4.jpg",
+    ],
   },
   ryo: {
     name: "RYO",
@@ -57,6 +77,11 @@ const memberData = {
       "./assets/images/ourwish/ryo2.jpg",
       "./assets/images/ourwish/ryo3.jpg",
       "./assets/images/ourwish/ryo4.jpg",
+    ],
+    smallImages: [
+      "./assets/images/ourwish/small-ryo2.jpg",
+      "./assets/images/ourwish/small-ryo3.jpg",
+      "./assets/images/ourwish/small-ryo4.jpg",
     ],
   },
   sakuya: {
@@ -74,6 +99,11 @@ const memberData = {
       "./assets/images/ourwish/sakuya2.jpg",
       "./assets/images/ourwish/sakuya3.jpg",
       "./assets/images/ourwish/sakuya4.jpg",
+    ],
+    smallImages: [
+      "./assets/images/ourwish/small-sakuya2.jpg",
+      "./assets/images/ourwish/small-sakuya3.jpg",
+      "./assets/images/ourwish/small-sakuya4.jpg",
     ],
   },
 };
@@ -105,9 +135,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // 사진 적용
+    // 썸네일 적용 및 클릭 이벤트 연결
     photoBoxes.forEach((imgEl, i) => {
-      imgEl.src = data.images[i] || "";
+      // 썸네일 이미지 넣기
+      imgEl.src = data.smallImages?.[i] || data.images[i] || "";
+
+      // 클릭하면 원본 이미지로 열리도록
+      imgEl.onclick = () => {
+        openPhotoModal(data.images[i]);
+      };
     });
+
     mainPhoto.src = data.mainImage || "";
 
     // 그라디언트 배경
