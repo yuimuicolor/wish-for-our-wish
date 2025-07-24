@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wish Upon a Star⛧</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/todays-wish.css" />
+  </head>
+  <body>
+    <header>
+      <a href="./index.html">
+        <div class="logo-container">
+          <img
+            class="logo-img"
+            src="./assets/images/wish_upon_a_star_logo.svg"
+            alt="Wish Upon a Star Logo"
+            width="100%"
+          />
+        </div>
+      </a>
+      <div class="tab-menu-container">
+        <a href="./our-wish.html" class="tab-menu-item">Our Wish</a>
+        <a href="./photo.html" class="tab-menu-item">Photo</a>
+        <a href="./music.html" class="tab-menu-item">Music</a>
+        <a href="./todays-wish.html" class="tab-menu-item active"
+          >Today's Wish</a
+        >
+      </div>
+    </header>
+    <main>
+      <div class="frame">
+        <div class="main-container">
+          <img class="sparkle-bg" src="./assets/images/sparkle.gif" alt="sparkle-bg" />
+          <img
+            class="star-1-bg"
+            src="./assets/images/silver-star-1.png"
+            alt="silver-star-1"
+          />
+          <img
+            class="star-2-bg"
+            src="./assets/images/silver-star-2.png"
+            alt="silver-star-2"
+            width="400px"
+          />
+          <div class="main-box">
+            <div class="top-container">
+              <img src="./assets/images/photo-top-text.png" alt="wish for our wish" />
+              <img src="./assets/images/photo-top-button.png" alt="buttons" />
+            </div>
+            <div class="content-container">
+              <div class="wichu-fall-bg"></div>
+
+              <div class="content-box">
+                <div class="title-container heartbeat">
+                  <img src="./assets/images/todays-wish/title.png" alt="두근두근!" />
+                </div>
+                <div class="wichu-container bounce">
+                  <img src="./assets/images/todays-wish/wichu.png" alt="위츄" />
+                </div>
+                <div class="sub-title-container shine">
+                  <img
+                    src="./assets/images/todays-wish/sub-title.png"
+                    alt="오늘 나의 행운의 WISH는?"
+                  />
+                </div>
+                <button class="start-button">뽑기!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div id="modal" class="modal hidden">
+      <div class="modal-overlay"></div>
+      <div class="modal-content-container">
+        <div class="modal-image-wrapper">
+          <img src="" alt="modal-image" />
+          <button id="closeModal" class="close-btn">
+            <img src="" alt="close-btn" />
+          </button>
+          <button class="first-button voice-button"></button>
+          <button class="second-button voice-button"></button>
+          <button class="third-button voice-button"></button>
+        </div>
+      </div>
+    </div>
+    <script src="./js/photo-image-list.js"></script>
+    <script src="./js/todays-wish.js"></script>
+  </body>
+</html>
