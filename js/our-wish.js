@@ -174,26 +174,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!src) return;
 
     const closeBtn = photoModal.querySelector(".modal-photo-close");
+    closeBtn.style.display = "none";
 
-    // 초기 상태: 숨기기
-    closeBtn.style.opacity = "0";
+     // 이미지 로딩 완료 후 버튼 보여주기
+  photoModalImg.onload = () => {
+    closeBtn.style.display = "block";
+  };
 
-    photoModalImg.src = "../assets/images/loading.gif"; // 로딩 이미지로 초기화
-
-    const preloadPhotoImg = new Image();
-    // 이미지 로딩되면 부드럽게 나타나게
-    preloadPhotoImg.onload = () => {
-
-        photoModalImg.src = src;
-
-      requestAnimationFrame(() => {
-        closeBtn.style.transition = "opacity 0.4s ease-in-out";
-        closeBtn.style.opacity = "1";
-
-      });
-    };
-
-    preloadPhotoImg.src = src;
+    photoModalImg.src = src;
     photoModal.classList.remove("hidden");
   };
 
