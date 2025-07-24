@@ -173,7 +173,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const openPhotoModal = (src) => {
     if (!src) return;
 
-    const photoModalImg = photoModal.querySelector(".modal-photo-img");
     const closeBtn = photoModal.querySelector(".modal-photo-close");
 
     // 초기 상태: 숨기기
@@ -181,20 +180,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     photoModalImg.src = "../assets/images/loading.gif"; // 로딩 이미지로 초기화
 
+    const preloadPhotoImg = new Image();
     // 이미지 로딩되면 부드럽게 나타나게
-    photoModalImg.onload = () => {
-      requestAnimationFrame(() => {
-        // photoModalImg.style.transition = "opacity 0.4s ease-in-out";
-        // photoModalImg.style.opacity = "1";
+    preloadPhotoImg.onload = () => {
 
+        photoModalImg.src = src;
+
+      requestAnimationFrame(() => {
         closeBtn.style.transition = "opacity 0.4s ease-in-out";
         closeBtn.style.opacity = "1";
 
-        photoModalImg.src = src;
       });
     };
 
-    photoModalImg.src = src;
+    preloadPhotoImg.src = src;
     photoModal.classList.remove("hidden");
   };
 
