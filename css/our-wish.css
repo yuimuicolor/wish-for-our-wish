@@ -430,3 +430,46 @@
   right: -10px;
   cursor: pointer;
 }
+
+
+@media (max-width: 480px) {
+
+  .main-container {
+    padding: 45px 0;
+  }
+
+  .sparkle-bg {
+    display: none; /* 모바일에서는 배경 이미지 숨김 */
+  }
+  
+  .text-container {
+    width: 280px;
+  }
+
+  .wish-title {
+    font-size : var(--font-30);
+  }
+
+  .wish-subtitle {
+    font-size: var(--font-20);
+  }
+
+  .card-container {
+    /* display: flex; */
+    /* flex-direction: column; */
+    grid-template-columns: repeat(2, 130px);
+    gap: 10px;
+  }
+}
+.card {
+  width: 130px; /* 카드 너비 */
+  height: 160px; /* 카드 높이 */
+  border-radius: 10px;
+  border: 2px solid var(--color-white);
+  position: relative; /* hover 효과용 기준점 */
+  overflow: hidden; /* 넘치는 오버레이 잘라내기 */
+}
+
+.card > img {
+  width: 100%;
+}
