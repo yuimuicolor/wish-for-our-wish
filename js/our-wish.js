@@ -18,7 +18,7 @@ const memberData = {
   },
   riku: {
     name: "RIKU",
-    gradient: ["#F6527B", "#E33560"],
+    gradient: ["#F6527B", "#ca264fff"],
     textColor: "#E33560",
     textContents: ["리쿠 RIKU リク", "2003.06.28", "Fukui, Japan", "🐿️🐈‍⬛"],
     mainImage: "./assets/images/ourwish/riku.jpg",

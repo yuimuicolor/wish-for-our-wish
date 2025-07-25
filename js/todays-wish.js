@@ -6,7 +6,7 @@ function spawnWichu() {
 
   const randomLeft = Math.random() * window.innerWidth;
   wichu.style.left = `${randomLeft}px`;
-  wichu.style.top = `-100px`; // 화면 위에서 시작
+  wichu.style.top = `-50px`; // 화면 위에서 시작
 
   container.appendChild(wichu);
 
@@ -21,7 +21,7 @@ setInterval(() => {
 
 // 모달 관련
 const modal = document.getElementById("modal");
-const modalImg = modal.querySelector(".modal-image-wrapper img");
+// const modalImg = modal.querySelector(".modal-image-wrapper img");
 const closeBtnImg = modal.querySelector("#closeModal img");
 const members = ["sion", "riku", "yushi", "jaehee", "ryo", "sakuya"];
 let currentMember = null;
@@ -39,15 +39,11 @@ let currentMember = null;
 function openRandomModal() {
   currentMember = members[Math.floor(Math.random() * members.length)];
 
-  modalImg.style.opacity = "0"; // 이미지 먼저 숨김
+  // modalImg.style.opacity = "0"; // 이미지 먼저 숨김
   closeBtnImg.style.opacity = "0";
 
-  // 먼저 로딩 이미지 표시해도 됨 (선택)
-  modalImg.src = "./assets/images/loading.gif";
-  closeBtnImg.src = "./assets/images/loading.gif";
-
   const realModalImg = `./assets/images/todays-wish/card-${currentMember}.png`;
-  const realCloseImg = `./assets/images/todays-wish/close-btn-${currentMember}.png`;
+  const closeButtonImg = `./assets/images/todays-wish/close-btn-${currentMember}.png`;
 
   // 진짜 이미지 미리 로드
   const preloadMain = new Image();
@@ -62,15 +58,15 @@ function openRandomModal() {
   };
 
   preloadClose.onload = () => {
-    closeBtnImg.src = realCloseImg;
+    closeButtonImg.src = realCloseImg;
     requestAnimationFrame(() => {
-      closeBtnImg.style.transition = "opacity 0.4s ease-in-out";
-      closeBtnImg.style.opacity = "1";
+      closeButtonImg.style.transition = "opacity 0.4s ease-in-out";
+      closeButtonImg.style.opacity = "1";
     });
   };
 
   preloadMain.src = realModalImg;
-  preloadClose.src = realCloseImg;
+  preloadClose.src = closeButtonImg;
 
   modal.classList.remove("hidden");
   document.body.style.overflow = "hidden";
