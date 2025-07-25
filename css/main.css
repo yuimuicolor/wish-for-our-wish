@@ -169,8 +169,6 @@ a {
 
 @media (max-width: 480px) {
 
-
-
   .main-button {
     padding: 10px 50px;
     font-size: var(--font-24);

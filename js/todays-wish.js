@@ -26,16 +26,6 @@ const closeBtnImg = modal.querySelector("#closeModal img");
 const members = ["sion", "riku", "yushi", "jaehee", "ryo", "sakuya"];
 let currentMember = null;
 
-// function openRandomModal() {
-//   currentMember = members[Math.floor(Math.random() * members.length)];
-
-//   modalImg.src = `./assets/images/todays-wish/card-${currentMember}.png`;
-//   closeBtnImg.src = `./assets/images/todays-wish/close-btn-${currentMember}.png`;
-
-//   modal.classList.remove("hidden");
-//   document.body.style.overflow = "hidden";
-// }
-
 function openRandomModal() {
   currentMember = members[Math.floor(Math.random() * members.length)];
 
@@ -71,7 +61,6 @@ function openRandomModal() {
   modal.classList.remove("hidden");
   document.body.style.overflow = "hidden";
 }
-
 
 document
   .querySelector(".start-button")

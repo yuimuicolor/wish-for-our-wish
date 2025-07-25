@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("modal-template");
   const photoModal = document.getElementById("photoModal");
   const photoModalImg = document.getElementById("photoModalImg");
-
+ 
   const textTitles = modal.querySelectorAll(".text-title");
   const textContents = modal.querySelectorAll(".text-content");
   const photoBoxes = modal.querySelectorAll(".photo-box img");
