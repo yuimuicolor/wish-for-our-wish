@@ -133,16 +133,17 @@
 
 .modal-image-wrapper {
   position: relative;
-  height: 80vh;
-  max-height: 80vh;
-  max-width: 90vw;
+  display: inline-block;
 }
 
-.modal-image-wrapper img {
-  height: 100%;
-  width: auto;
+.modal-image-wrapper img { 
   display: block;
+  height: 100%;
+  max-height: 80vh; /* 최대 높이 80vh */
+  width: auto;
+  max-width: 90vw;
   pointer-events: none;
+  object-fit: contain;
 }
 
 .close-btn {

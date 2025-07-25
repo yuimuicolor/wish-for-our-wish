@@ -149,7 +149,9 @@ document.addEventListener("DOMContentLoaded", () => {
     mainPhoto.src = data.mainImage || "";
 
     // 그라디언트 배경
-    gradientTarget.style.background = `linear-gradient(180deg, ${data.gradient[0]} 0%, #fff 25%, #fff 73.56%, ${data.gradient[1]} 100%)`;
+    // gradientTarget은 modal.querySelector(".modal-content-container")
+    gradientTarget.style.setProperty("--color1", data.gradient[0]);
+    gradientTarget.style.setProperty("--color2", data.gradient[1]);
 
     // 이름 텍스트
     nameSpan.innerText = data.name;
@@ -169,23 +171,21 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.classList.remove("hidden");
   };
 
+  const openPhotoModal = (src) => {
+    if (!src) return;
 
-const openPhotoModal = (src) => {
-  if (!src) return;
+    // 버튼 숨기기 먼저
+    const closeBtn = photoModal.querySelector(".modal-photo-close");
+    closeBtn.style.display = "none";
 
-  // 버튼 숨기기 먼저
-  const closeBtn = photoModal.querySelector(".modal-photo-close");
-  closeBtn.style.display = "none";
+    // 이미지 로딩 완료 후 버튼 보여주기
+    photoModalImg.onload = () => {
+      closeBtn.style.display = "block";
+    };
 
-  // 이미지 로딩 완료 후 버튼 보여주기
-  photoModalImg.onload = () => {
-    closeBtn.style.display = "block";
+    photoModalImg.src = src;
+    photoModal.classList.remove("hidden");
   };
-
-  photoModalImg.src = src;
-  photoModal.classList.remove("hidden");
-};
-
 
   mainPhoto.addEventListener("click", () => {
     openPhotoModal(mainPhoto.src);
@@ -223,7 +223,7 @@ const openPhotoModal = (src) => {
   setupModalClose(modal, ".modal-close");
   setupModalClose(photoModal, ".modal-photo-close");
 
-   const allImages = document.querySelectorAll("img");
+  const allImages = document.querySelectorAll("img");
 
   allImages.forEach((img) => {
     const realSrc = img.src;
