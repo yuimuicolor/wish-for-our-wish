@@ -197,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
     openPhotoModal(mainPhoto.src);
   });
 
-  // 💫 공통 모달 닫기 처리
+  // 공통 모달 닫기 처리
   const setupModalClose = (modalElement, closeSelector) => {
     modalElement.querySelectorAll(closeSelector).forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // 💫 이벤트 연결
+  // 이벤트 연결
   cards.forEach((card) => {
     card.addEventListener("click", () => {
       openMemberModal(card.dataset.member);
