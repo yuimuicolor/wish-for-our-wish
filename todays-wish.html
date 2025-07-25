@@ -81,41 +81,44 @@
         </div>
       </div>
     </main>
-    <!-- <div id="modal" class="modal hidden">
-      <div class="modal-overlay"></div>
-      <div class="modal-content-container">
-        <div class="modal-image-wrapper">
-          <img src="./assets/images/loading.gif" alt="modal-image" />
-          <button id="closeModal" class="close-btn">
-            <img src="" alt="close-btn" />
-          </button>
-          <button class="first-button voice-button"></button>
-          <button class="second-button voice-button"></button>
-          <button class="third-button voice-button"></button>
-        </div>
-      </div>
-    </div> -->
-
     <div id="modal" class="modal hidden">
       <div class="modal-overlay">
-        <div class="modal-content-container">
-          <img class="modal-background" src="./assets/images/todays-wish/background-yushi.png" alt="modal-image" />
-          <button id="closeModal" class="close-btn">
-            <img src="" alt="close-btn" />
+        <div class="modal-card">
+          <img class="modal-bg" src="" alt="bg" />
+          <img
+            class="modal-line"
+            src="./assets/images/todays-wish/line.png"
+            alt="line"
+          />
+          <button class="close-btn">
+            <img class="close-btn-img" src="" alt="close-btn" />
           </button>
-          <div class="modal-image-wrapper">
-            <div>
-              
+
+          <div class="modal-card-contents">
+            <img class="title-img" src="" alt="title" />
+            <div class="tamagochi-container">
+              <img class="tamagochi-bg" src="" alt="tamagochi" />
+              <div class="tamagochi-contents">
+                <img class="tamagochi-img" src="" alt="tamagochi" />
+                <div class="voice-buttons">
+                  <button class="first-btn voice-button">
+                    <img class="button-star" src="" alt="star-image" />
+                  </button>
+                  <button class="second-btn voice-button">
+                    <img class="button-star" src="" alt="star-image" />
+                  </button>
+                  <button class="third-btn voice-button">
+                    <img class="button-star" src="" alt="star-image" />
+                  </button>
+                </div>
+              </div>
             </div>
+            <img class="subtitle-img" src="" alt="subtitle" />
           </div>
-          <div class="voice-button-container">
-            <button class="first-button voice-button"></button>
-            <button class="second-button voice-button"></button>
-            <button class="third-button voice-button"></button>
-          </div>
-      </div></div>
-      
+        </div>
+      </div>
     </div>
+
     <script src="./js/photo-image-list.js"></script>
     <script src="./js/todays-wish.js"></script>
   </body>

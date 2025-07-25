@@ -1,3 +1,4 @@
+// 🌠 배경 위츄 떨어지기
 const container = document.querySelector(".wichu-fall-bg");
 
 function spawnWichu() {
@@ -6,7 +7,7 @@ function spawnWichu() {
 
   const randomLeft = Math.random() * window.innerWidth;
   wichu.style.left = `${randomLeft}px`;
-  wichu.style.top = `-50px`; // 화면 위에서 시작
+  wichu.style.top = `-50px`;
 
   container.appendChild(wichu);
 
@@ -15,84 +16,97 @@ function spawnWichu() {
   }, 6000);
 }
 
-setInterval(() => {
-  spawnWichu();
-}, 400);
+setInterval(spawnWichu, 400);
 
-// 모달 관련
-const modal = document.getElementById("modal");
-// const modalImg = modal.querySelector(".modal-image-wrapper img");
-const closeBtnImg = modal.querySelector("#closeModal img");
+// 🌠 멤버 목록 & 상태값
 const members = ["sion", "riku", "yushi", "jaehee", "ryo", "sakuya"];
 let currentMember = null;
+let currentAudio = null;
 
-function openRandomModal() {
-  currentMember = members[Math.floor(Math.random() * members.length)];
+// 🌠 모달 요소들
+const modal = document.getElementById("modal");
+const startButton = document.querySelector(".start-button");
+const closeBtn = modal.querySelector(".close-btn");
+const modalCard = modal.querySelector(".modal-card");
 
-  // modalImg.style.opacity = "0"; // 이미지 먼저 숨김
-  closeBtnImg.style.opacity = "0";
+// 🌠 이미지 요소
+const bg = modal.querySelector(".modal-bg");
+const closeBtnImg = modal.querySelector(".close-btn-img");
+const title = modal.querySelector(".title-img");
+const tamaBg = modal.querySelector(".tamagochi-bg");
+const tamaImg = modal.querySelector(".tamagochi-img");const buttonStars = modal.querySelectorAll(".button-star");
+const sub = modal.querySelector(".subtitle-img");
 
-  const realModalImg = `./assets/images/todays-wish/card-${currentMember}.png`;
-  const closeButtonImg = `./assets/images/todays-wish/close-btn-${currentMember}.png`;
+// 🌠 보이스 버튼들
+const voiceButtons = document.querySelectorAll(".voice-button");
 
-  // 진짜 이미지 미리 로드
-  const preloadMain = new Image();
-  const preloadClose = new Image();
+// 🌠 모달 열기 함수
+const openRandomModal = () => {
+  const key = members[Math.floor(Math.random() * members.length)];
+  currentMember = key;
 
-  preloadMain.onload = () => {
-    modalImg.src = realModalImg;
-    requestAnimationFrame(() => {
-      modalImg.style.transition = "opacity 0.4s ease-in-out";
-      modalImg.style.opacity = "1";
-    });
-  };
+  // 이미지 교체
+  bg.src = `./assets/images/todays-wish/background_${key}.png`;
+  closeBtnImg.src = `./assets/images/todays-wish/close-btn-${key}.png`;
+  title.src = `./assets/images/todays-wish/title_${key}.png`;
+  tamaBg.src = `./assets/images/todays-wish/tamagochi_${key}.png`;
+  tamaImg.src = `./assets/images/todays-wish/small_${key}.png`;
+  buttonStars.forEach((img) => {
+    img.src = `./assets/images/todays-wish/star_${key}.png`;
+  });
 
-  preloadClose.onload = () => {
-    closeButtonImg.src = realCloseImg;
-    requestAnimationFrame(() => {
-      closeButtonImg.style.transition = "opacity 0.4s ease-in-out";
-      closeButtonImg.style.opacity = "1";
-    });
-  };
+  sub.src = `./assets/images/todays-wish/subtitle_${key}.png`;
 
-  preloadMain.src = realModalImg;
-  preloadClose.src = closeButtonImg;
 
   modal.classList.remove("hidden");
   document.body.style.overflow = "hidden";
-}
+};
 
-document
-  .querySelector(".start-button")
-  .addEventListener("click", openRandomModal);
-
-document.getElementById("closeModal").addEventListener("click", () => {
+// 🌠 모달 닫기 함수
+const closeModal = () => {
   modal.classList.add("hidden");
   document.body.style.overflow = "auto";
+
+  // 오디오 정지
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+    currentAudio = null;
+  }
+};
+
+// 🌠 이벤트 연결
+
+// 뽑기 버튼
+startButton.addEventListener("click", openRandomModal);
+
+// 닫기 버튼
+closeBtn.addEventListener("click", closeModal);
+
+// 모달 배경 클릭 → 닫힘
+modal.addEventListener("click", closeModal);
+
+// 모달 내부 클릭 → 닫힘 방지
+modalCard.addEventListener("click", (e) => {
+  e.stopPropagation();
 });
 
-modal.addEventListener("click", () => {
-  modal.classList.add("hidden");
-  document.body.style.overflow = "auto";
-});
-
-modal
-  .querySelector(".modal-content-container")
-  .addEventListener("click", (e) => {
-    e.stopPropagation();
-  });
-
-// 보이스 버튼
-const voiceButtons = document.querySelectorAll(".voice-button");
-
+// 보이스 버튼 클릭 이벤트
 voiceButtons.forEach((btn, index) => {
   btn.addEventListener("click", () => {
     if (!currentMember) return;
+
+    // 기존 오디오 정지
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
 
     const voiceIndex = index + 1;
     const audio = new Audio(
       `../assets/voices/${currentMember}_${voiceIndex}.m4a`
     );
+    currentAudio = audio;
     audio.play();
   });
 });
