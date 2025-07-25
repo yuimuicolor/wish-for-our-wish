@@ -460,7 +460,8 @@
     grid-template-columns: repeat(2, 130px);
     gap: 10px;
   }
-}
+
+  
 .card {
   width: 130px; /* 카드 너비 */
   height: 160px; /* 카드 높이 */
@@ -472,4 +473,5 @@
 
 .card > img {
   width: 100%;
+}
 }
