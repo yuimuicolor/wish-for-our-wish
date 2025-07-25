@@ -136,7 +136,7 @@
   display: inline-block;
 }
 
-.modal-image-wrapper img { 
+.modal-image-wrapper img {
   display: block;
   height: 100%;
   max-height: 80vh; /* 최대 높이 80vh */
@@ -154,4 +154,57 @@
   cursor: pointer;
   width: 30px;
   height: 30px;
+}
+
+@media (max-width: 480px) {
+
+  .main-container {
+    padding: 38px 20px;
+  }
+
+  .sparkle-bg {
+    width: auto !important;
+    height: 100%;
+  }
+
+  .image-container {
+    width: 100%;
+  }
+
+  .left-button,
+  .right-button {
+    position: absolute;
+    bottom: 0;
+    z-index: 2000;
+  }
+
+  .left-button {
+    left: 60px;
+  }
+
+  .right-button {
+    right: 60px;
+  }
+
+  .top-container {
+    position: relative;
+    width: 100%;
+  }
+
+  .top-container > img:nth-child(1) {
+    width: 160px;
+  }
+
+  .top-container > img:nth-child(2) {
+    width: 66px;
+  }
+
+  .image-wrapper {
+    height: 390px;
+  }
+
+  .close-btn {
+    top: 10px;
+    right: 10px;
+  }
 }
