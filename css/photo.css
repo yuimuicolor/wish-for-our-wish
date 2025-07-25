@@ -133,7 +133,9 @@
 
 .modal-image-wrapper {
   position: relative;
-  height: 90vh;
+  height: 80vh;
+  max-height: 80vh;
+  max-width: 90vw;
 }
 
 .modal-image-wrapper img {

@@ -191,7 +191,7 @@ const openPhotoModal = (src) => {
     openPhotoModal(mainPhoto.src);
   });
 
-  // 💫 공통 모달 닫기 처리
+  // 공통 모달 닫기 처리
   const setupModalClose = (modalElement, closeSelector) => {
     modalElement.querySelectorAll(closeSelector).forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -206,7 +206,7 @@ const openPhotoModal = (src) => {
     });
   };
 
-  // 💫 이벤트 연결
+  // 이벤트 연결
   cards.forEach((card) => {
     card.addEventListener("click", () => {
       openMemberModal(card.dataset.member);
@@ -228,17 +228,16 @@ const openPhotoModal = (src) => {
   allImages.forEach((img) => {
     const realSrc = img.src;
 
-    // 🔄 진짜 경로 저장하고, 로딩용으로 바꾸기
+    // 이미지 경로 저장하고, 로딩용으로 바꾸기
     img.dataset.src = realSrc;
-    img.src = "./assets/images/loading.gif"; // 이건 반드시 존재해야 함
+    img.src = "./assets/images/loading.gif";
     img.style.opacity = "0"; // 먼저 안보이게
 
-    // 🤖 이미지 프리로드
+    // 이미지 프리로드
     const temp = new Image();
     temp.onload = () => {
       img.src = realSrc;
 
-      // ✅ 이미지 교체 후 next frame에 opacity 켜기
       requestAnimationFrame(() => {
         img.style.transition = "opacity 0.4s ease-in-out";
         img.style.opacity = "1";
