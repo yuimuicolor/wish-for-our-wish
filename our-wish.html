@@ -29,7 +29,11 @@
     <main>
       <div class="frame">
         <div class="main-container">
-          <img class="sparkle-bg" src="./assets/images/sparkle.gif" alt="sparkle-bg" />
+          <img
+            class="sparkle-bg"
+            src="./assets/images/sparkle.gif"
+            alt="sparkle-bg"
+          />
           <img
             class="star-1-bg"
             src="./assets/images/silver-star-1.png"
@@ -49,19 +53,31 @@
           </div>
           <div class="card-container">
             <div class="card" data-member="sion">
-              <img src="./assets/images/ourwish-sion-card.png" alt="sion-card" />
+              <img
+                src="./assets/images/ourwish-sion-card.png"
+                alt="sion-card"
+              />
               <span>SION</span>
             </div>
             <div class="card" data-member="riku">
-              <img src="./assets/images/ourwish-riku-card.png" alt="riku-card" />
+              <img
+                src="./assets/images/ourwish-riku-card.png"
+                alt="riku-card"
+              />
               <span>RIKU</span>
             </div>
             <div class="card" data-member="yushi">
-              <img src="./assets/images/ourwish-yushi-card.png" alt="yushi-card" />
+              <img
+                src="./assets/images/ourwish-yushi-card.png"
+                alt="yushi-card"
+              />
               <span>YUSHI</span>
             </div>
             <div class="card" data-member="jaehee">
-              <img src="./assets/images/ourwish-jaehee-card.png" alt="jaehee-card" />
+              <img
+                src="./assets/images/ourwish-jaehee-card.png"
+                alt="jaehee-card"
+              />
               <span>JAEHEE</span>
             </div>
             <div class="card" data-member="ryo">
@@ -69,7 +85,10 @@
               <span>RYO</span>
             </div>
             <div class="card" data-member="sakuya">
-              <img src="./assets/images/ourwish-saku-card.png" alt="saku-card" />
+              <img
+                src="./assets/images/ourwish-saku-card.png"
+                alt="saku-card"
+              />
               <span>SAKU</span>
             </div>
           </div>
@@ -79,38 +98,46 @@
 
     <div id="modal-template" class="modal hidden">
       <div class="modal-overlay"></div>
-      <div class="modal-content-container">
-        <div class="modal-content-box-left">
-          <div class="modal-text-container">
-            <div class="text-box">
-              <div class="text-title">Name</div>
-              <div class="text-content"></div>
+      <div class="modal-container">
+        <div class="modal-content-container">
+          <div class="modal-content-box-left">
+            <div class="modal-text-container">
+              <div class="text-box">
+                <div class="text-title">Name</div>
+                <div class="text-content"></div>
+              </div>
+              <div class="text-box">
+                <div class="text-title">Birth</div>
+                <div class="text-content"></div>
+              </div>
+              <div class="text-box">
+                <div class="text-title">From</div>
+                <div class="text-content"></div>
+              </div>
+              <div class="text-box">
+                <div class="text-title">Mark</div>
+                <div class="text-content"></div>
+              </div>
             </div>
-            <div class="text-box">
-              <div class="text-title">Birth</div>
-              <div class="text-content"></div>
-            </div>
-            <div class="text-box">
-              <div class="text-title">From</div>
-              <div class="text-content"></div>
-            </div>
-            <div class="text-box">
-              <div class="text-title">Mark</div>
-              <div class="text-content"></div>
+            <div class="modal-photo-container">
+              <div class="photo-box">
+                <img src="./assets/images/loading.gif" alt="photo1" />
+              </div>
+              <div class="photo-box">
+                <img src="./assets/images/loading.gif" alt="photo2" />
+              </div>
+              <div class="photo-box">
+                <img src="./assets/images/loading.gif" alt="photo3" />
+              </div>
             </div>
           </div>
-          <div class="modal-photo-container">
-            <div class="photo-box"><img src="./assets/images/loading.gif" alt="photo1" /></div>
-            <div class="photo-box"><img src="./assets/images/loading.gif" alt="photo2" /></div>
-            <div class="photo-box"><img src="./assets/images/loading.gif" alt="photo3" /></div>
-          </div>
-        </div>
-        <div class="modal-content-box-right">
-          <div class="modal-text-container">
-            <span class="modal-name"></span>
-          </div>
-          <div class="modal-photo-container">
-            <img src="./assets/images/loading.gif" alt="main-photo" />
+          <div class="modal-content-box-right">
+            <div class="modal-text-container">
+              <span class="modal-name"></span>
+            </div>
+            <div class="modal-photo-container">
+              <img src="./assets/images/loading.gif" alt="main-photo" />
+            </div>
           </div>
         </div>
         <button class="close-btn modal-close">
@@ -124,8 +151,16 @@
       <div class="modal-overlay"></div>
       <div class="modal-content-container">
         <div class="modal-image-wrapper">
-          <img id="photoModalImg" src="./assets/images/loading.gif" alt="modal-image" />
-          <button id="photoCloseBtn" class="modal-photo-close" style="position: absolute;">
+          <img
+            id="photoModalImg"
+            src="./assets/images/loading.gif"
+            alt="modal-image"
+          />
+          <button
+            id="photoCloseBtn"
+            class="modal-photo-close"
+            style="position: absolute"
+          >
             <img src="./assets/images/photo-close-btn-2.png" alt="close-btn" />
           </button>
         </div>

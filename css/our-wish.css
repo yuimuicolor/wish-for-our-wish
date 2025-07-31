@@ -177,11 +177,16 @@
   }
 }
 
-
-.modal-content-container {
+.modal-container {
+  display: inline-block;
   position: relative;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.modal-content-container {
   display: flex;
   width: 672px;
   height: 580px;
@@ -195,29 +200,8 @@
  background-size: 100% 300%;
   animation: gradientWave 6s ease infinite;
 
-  transform: translate(-50%, -50%);
   z-index: 1000;
 }
-
-/* 모달 본문
-.modal-content-container {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  display: flex;
-  width: 672px;
-  height: 580px;
-  border-radius: 20px;
-  background: linear-gradient(
-    180deg,
-    #5cd3ff 0%,
-    #fff 25%,
-    #fff 73.56%,
-    #5cd3ff 100%
-  );
-  transform: translate(-50%, -50%);
-  z-index: 1000;
-} */
 
 .modal-content-box {
   width: 100%;
@@ -412,8 +396,8 @@
 /* 닫기 버튼 */
 .modal-photo-close {
   position: absolute;
-  /* top: 8px; */
-  /* right: 8px; */
+  top: 8px;
+  right: 8px;
   display: none; /* 기본적으로 숨김 */
   cursor: pointer;
   z-index: 2;
@@ -473,5 +457,23 @@
 
 .card > img {
   width: 100%;
+}
+
+.modal-content-container {
+  width: 336px;
+  height: 600px;
+  overflow-y: scroll;
+  flex-direction: column;
+}
+
+.modal-content-box-left {
+  order: 2;
+  width: 336px;
+  padding: 20px;
+}
+
+.modal-content-box-right {
+  order: 1;
+  padding: 40px 20px 0px;
 }
 }
