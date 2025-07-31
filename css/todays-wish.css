@@ -347,7 +347,7 @@
     width: 100%;
   }
 
-   .top-container {
+  .top-container {
     position: relative;
     width: 100%;
   }
@@ -365,7 +365,7 @@
     height: 60px;
   }
 
-  .content-box  img {
+  .content-box img {
     width: 90%;
   }
 
@@ -377,6 +377,47 @@
   .start-button {
     width: 180px;
     height: 60px;
+  }
+
+  .modal-card {
+    width: 346px;
+    height: 700px;
+  }
+
+  .modal-bg {
+    width: 346px;
+  }
+
+  .modal-card-contents {
+    padding: 100px 0px;
+    gap: 20px;
+  }
+
+  .title-img {
+    width: 100%;
+  }
+
+  .tamagochi-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .tamagochi-bg {
+    width: 90%;
+  }
+
+  .tamagochi-contents {
+    top: 95px;
+  }
+
+  .tamagochi-img {
+    width: 130px;
+    height: 130px;
+  }
+
+  .subtitle-img {
+    width: 80%;
   }
 
 }
