@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("modal-template");
   const photoModal = document.getElementById("photoModal");
   const photoModalImg = document.getElementById("photoModalImg");
- 
+
   const textTitles = modal.querySelectorAll(".text-title");
   const textContents = modal.querySelectorAll(".text-content");
   const photoBoxes = modal.querySelectorAll(".photo-box img");
@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.classList.remove("hidden");
   };
 
-   const openPhotoModal = (src) => {
+  const openPhotoModal = (src) => {
     if (!src) return;
 
     const closeBtn = photoModal.querySelector(".modal-photo-close");
@@ -183,10 +183,11 @@ document.addEventListener("DOMContentLoaded", () => {
       closeBtn.style.position = "absolute";
     };
 
-    // 이미지 로드 완료 시
     photoModalImg.onload = () => {
-      positionCloseBtn(); // 위치 잡기
-      closeBtn.style.display = "block"; // 보이기
+      requestAnimationFrame(() => {
+        positionCloseBtn(); // 위치 잡기
+        closeBtn.style.display = "block"; // 보이기
+      });
     };
 
     // 혹시 캐시된 이미지면 onload 안 불리니까 바로 처리
