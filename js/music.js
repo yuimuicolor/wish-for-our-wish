@@ -148,8 +148,13 @@ volumeBar.addEventListener("mousedown", (e) => {
 });
 volumeBar.addEventListener("touchstart", (e) => {
   isDragging = true;
+
+  // iOS에서 반드시 터치 직후 resume
+  if (audioCtx.state === "suspended") audioCtx.resume();
+
   updateVolume(e);
 }, { passive: false });
+
 
 document.addEventListener("mousemove", (e) => {
   if (!isDragging) return;
@@ -157,9 +162,11 @@ document.addEventListener("mousemove", (e) => {
 });
 document.addEventListener("touchmove", (e) => {
   if (!isDragging) return;
+  if (audioCtx.state === "suspended") audioCtx.resume();
   updateVolume(e);
   e.preventDefault();
 }, { passive: false });
+
 
 document.addEventListener("mouseup", () => isDragging = false);
 document.addEventListener("touchend", () => isDragging = false);
