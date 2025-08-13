@@ -378,8 +378,10 @@
 
 /* 이미지 확대용 모달 wrapper */
 .photo-modal-image-wrapper {
+  display: block;
   position: relative;
-  display: inline-block;
+  max-width: 90vw;
+  margin: 0 auto;
 }
 
 .photo-modal-image-wrapper img {
