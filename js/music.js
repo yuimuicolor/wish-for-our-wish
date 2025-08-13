@@ -76,22 +76,11 @@ const volumePointer = document.querySelector(".volume-pointer");
 let isDragging = false;
 
 
-// Web Audio API 세팅
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-const track = audioCtx.createMediaElementSource(audioEl);
-const gainNode = audioCtx.createGain();
-track.connect(gainNode).connect(audioCtx.destination);
 
-
-// 초기 볼륨
-gainNode.gain.value = 0.8;
-setPointerByVolume(0.8);
-
-// 재생 버튼
-playButton.addEventListener("click", async () => {
-  if (audioCtx.state === "suspended") await audioCtx.resume();
-  audioEl.play();
-});
+// 첫 곡 세팅
+audioEl.src = songs[currentIndex].src;
+audioEl.load();
+audioEl.volume = 0.8;
 
 
 // 볼륨 포인터 위치 설정
@@ -126,19 +115,11 @@ function updateCurrentTime() {
 
 // 볼륨 업데이트 함수
 function updateVolume(e) {
-  let clientX;
-  if (e.touches) clientX = e.touches[0].clientX;
-  else clientX = e.clientX;
-
+  let clientX = e.touches ? e.touches[0].clientX : e.clientX;
   const barRect = volumeBar.getBoundingClientRect();
-  let x = clientX - barRect.left;
-  x = Math.max(0, Math.min(x, barRect.width));
-
-  const pointerHalf = volumePointer.offsetWidth / 2;
-  volumePointer.style.left = `${x - pointerHalf}px`;
-
-  const volume = x / barRect.width;
-  gainNode.gain.value = volume;
+  let x = Math.max(0, Math.min(clientX - barRect.left, barRect.width));
+  volumePointer.style.left = `${x - volumePointer.offsetWidth/2}px`;
+  audioEl.volume = x / barRect.width;
 }
 
 // 이벤트
@@ -148,10 +129,6 @@ volumeBar.addEventListener("mousedown", (e) => {
 });
 volumeBar.addEventListener("touchstart", (e) => {
   isDragging = true;
-
-  // iOS에서 반드시 터치 직후 resume
-  if (audioCtx.state === "suspended") audioCtx.resume();
-
   updateVolume(e);
 }, { passive: false });
 
@@ -162,10 +139,9 @@ document.addEventListener("mousemove", (e) => {
 });
 document.addEventListener("touchmove", (e) => {
   if (!isDragging) return;
-  if (audioCtx.state === "suspended") audioCtx.resume();
   updateVolume(e);
   e.preventDefault();
-}, { passive: false });
+});
 
 
 document.addEventListener("mouseup", () => isDragging = false);
@@ -261,14 +237,6 @@ function playPrev() {
   if (currentIndex > 0) {
     playSong(currentIndex - 1);
   }
-}
-
-// 첫 볼륨 세팅
-function setPointerByVolume(volume) {
-  const barWidth = volumeBar.offsetWidth;
-  const pointerHalf = volumePointer.offsetWidth / 2;
-  const x = barWidth * volume;
-  volumePointer.style.left = `${x - pointerHalf}px`;
 }
 
 playButton.addEventListener("click", togglePlayPause);
