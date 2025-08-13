@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const mainPhoto = modal.querySelector(
     ".modal-content-box-right .modal-photo-container img"
   );
-  const gradientTarget = modal.querySelector(".modal-content-container");
+  const modalContentContainer = modal.querySelector(".modal-content-container");
   const nameSpan = modal.querySelector(".modal-name");
   const cards = document.querySelectorAll(".card");
 
@@ -149,9 +149,8 @@ document.addEventListener("DOMContentLoaded", () => {
     mainPhoto.src = data.mainImage || "";
 
     // 그라디언트 배경
-    // gradientTarget은 modal.querySelector(".modal-content-container")
-    gradientTarget.style.setProperty("--color1", data.gradient[0]);
-    gradientTarget.style.setProperty("--color2", data.gradient[1]);
+    modalContentContainer.style.setProperty("--color1", data.gradient[0]);
+    modalContentContainer.style.setProperty("--color2", data.gradient[1]);
 
     // 이름 텍스트
     nameSpan.innerText = data.name;
@@ -169,6 +168,11 @@ document.addEventListener("DOMContentLoaded", () => {
     nameSpan.style.webkitTextFillColor = "transparent";
 
     modal.classList.remove("hidden");
+
+    
+    // 스크롤 위치 초기화
+    modalContentContainer.scrollTop = 0;
+    
   };
 
   const closeBtn = document.getElementById("photoCloseBtn");
