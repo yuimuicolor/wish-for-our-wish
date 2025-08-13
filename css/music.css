@@ -471,7 +471,9 @@
   }
 
   .volume-box {
-    display: none;
+    bottom: -2px;
+    right: 0px;
+    box-shadow: none;
     position: relative;
     width: 100%;
   }
