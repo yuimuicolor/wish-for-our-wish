@@ -155,11 +155,13 @@ document.addEventListener("mouseup", () => {
   document.body.style.userSelect = "";
 });
 
-// 터치 드래그 끝
-document.addEventListener("touchend", () => {
+document.addEventListener("touchend", (e) => {
+  if (isDragging) {
+    updateVolume(e);
+  }
   isDragging = false;
   document.body.style.userSelect = "";
-});
+}, { passive: false });
 
 function renderPlaylist() {
   listContainer.innerHTML = "";
