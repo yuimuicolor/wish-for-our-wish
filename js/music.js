@@ -146,8 +146,8 @@ document.addEventListener("mousemove", (e) => {
 document.addEventListener("touchmove", (e) => {
   if (!isDragging) return;
   updateVolume(e);
-  e.preventDefault();  // 터치 시 스크롤 방지
-});
+  e.preventDefault(); // 이게 꼭 있어야 함!
+}, { passive: false });
 
 // 마우스 드래그 끝
 document.addEventListener("mouseup", () => {

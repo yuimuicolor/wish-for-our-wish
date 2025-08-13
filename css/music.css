@@ -448,6 +448,7 @@
   .player-box {
     flex-direction: column;
     height: auto;
+    overflow: hidden;
   }
 
   .player-left-box {
@@ -471,11 +472,9 @@
   }
 
   .volume-box {
-    bottom: -2px;
-    right: 0px;
-    box-shadow: none;
     position: relative;
     width: 100%;
+    border-radius: 0;
   }
 
   .stars {
