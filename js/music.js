@@ -15,7 +15,7 @@ const songs = [
     duration: "03:01",
     src: "../assets/musics/Songbird (Korean Version).mp3",
   },
-  { 
+  {
     title: "Songbird (Japanese Version)",
     duration: "03:01",
     src: "../assets/musics/Songbird (Japanese Version).mp3",
@@ -44,7 +44,7 @@ const songs = [
     title: "poppop",
     duration: "03:02",
     src: "../assets/musics/poppop.mp3",
-  }
+  },
 ];
 
 let currentIndex = 0;
@@ -69,6 +69,9 @@ const pauseIcon = "./assets/images/music/icon-pause.png";
 const titleText = document.querySelector(".title-text");
 const timeText = document.querySelector(".playing-time-title span");
 const listContainer = document.querySelector(".list-container");
+
+const audioWaveGifContainer = document.getElementById("audioWaveGif");
+const audioWavePngContainer = document.getElementById("audioWavePng");
 
 const volumeBar = document.querySelector(".volume-bar");
 const volumePointer = document.querySelector(".volume-pointer");
@@ -95,40 +98,75 @@ function updateCurrentTime() {
   timeText.textContent = formatted;
 }
 
-
-
 function updateVolume(e) {
+
+  let clientX;
+
+  if (e.touches) {
+    // 터치 이벤트일 때 첫 번째 터치 좌표 사용
+    clientX = e.touches[0].clientX;
+  } else {
+    // 마우스 이벤트일 때
+    clientX = e.clientX;
+  }
+
   const barRect = volumeBar.getBoundingClientRect();
-  let x = e.clientX - barRect.left;
+  let x = clientX - barRect.left;
 
   x = Math.max(0, Math.min(x, barRect.width));
 
   const pointerHalf = volumePointer.offsetWidth / 2;
-  volumePointer.style.left = `${x - pointerHalf}px`;
+  volumePointer.style.left =`${x - pointerHalf}px`;
 
   const volume = x / barRect.width;
   audio.volume = volume;
 }
 
-
-// 드래그 시작
+// 마우스 드래그 시작
 volumeBar.addEventListener("mousedown", (e) => {
   isDragging = true;
   updateVolume(e);
   document.body.style.userSelect = "none";
 });
 
-// 드래그 중
+volumeBar.addEventListener("touchstart", (e) => {
+  isDragging = true;
+  updateVolume(e);
+});
+
+// 마우스 드래그 중
 document.addEventListener("mousemove", (e) => {
   if (!isDragging) return;
   updateVolume(e);
 });
 
-// 드래그 끝
+document.addEventListener(
+  "touchmove",
+  (e) => {
+    if (!isDragging) return;
+    updateVolume(e);
+    e.preventDefault(); // isDragging일 때만 막기
+  },
+  { passive: false }
+);
+
+// 마우스 드래그 끝
 document.addEventListener("mouseup", () => {
   isDragging = false;
   document.body.style.userSelect = "";
 });
+
+document.addEventListener(
+  "touchend",
+  (e) => {
+    if (isDragging) {
+      updateVolume(e);
+    }
+    isDragging = false;
+    document.body.style.userSelect = "";
+  },
+  { passive: false }
+);
 
 function renderPlaylist() {
   listContainer.innerHTML = "";
@@ -185,15 +223,25 @@ function updateUI() {
   }
 }
 
+
+
 function togglePlayPause() {
   if (isPlaying) {
     audio.pause();
     playButton.querySelector("img").src = playImg;
     icon.src = pauseIcon;
+
+    audioWavePngContainer.style.display = "block";
+    audioWaveGifContainer.style.display = "none";
+
   } else {
     audio.play();
     playButton.querySelector("img").src = pauseImg;
     icon.src = playIcon;
+
+    
+    audioWavePngContainer.style.display = "none";
+    audioWaveGifContainer.style.display = "block";
   }
   isPlaying = !isPlaying;
 }
@@ -222,7 +270,6 @@ function playPrev() {
   }
 }
 
-
 // 첫 볼륨 세팅
 function setPointerByVolume(volume) {
   const barWidth = volumeBar.offsetWidth;
@@ -230,8 +277,6 @@ function setPointerByVolume(volume) {
   const x = barWidth * volume;
   volumePointer.style.left = `${x - pointerHalf}px`;
 }
-
-
 
 playButton.addEventListener("click", togglePlayPause);
 nextButton.addEventListener("click", playNext);
@@ -241,5 +286,3 @@ renderPlaylist();
 audio.volume = 0.8;
 setPointerByVolume(0.8);
 updateUI();
-
-

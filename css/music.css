@@ -125,8 +125,15 @@
   justify-content: space-between;
   width: 214px;
   height: 130px;
-  gap: 10px;
   padding: 10px 0px;
+}
+
+#audioWaveGif {
+  display: none;
+}
+
+#audioWavePng {
+  display: block;
 }
 
 .time-box {
@@ -177,7 +184,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 318px;
+  width: 368px;
   height: 40px;
   padding: 0px 20px;
   border-radius: 20px 20px 0px 0px;
@@ -452,12 +459,12 @@
 
   .player-left-box {
     width: 100%;
-    height: auto;
     align-items: self-start;
+    gap: 6px;
   }
 
   .player-left-box > div:nth-child(2) > img {
-    height: 30px;
+    height: 80px;
   }
 
   .time-box {
