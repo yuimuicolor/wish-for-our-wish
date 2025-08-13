@@ -467,6 +467,10 @@
   flex-direction: column;
 }
 
+#photo-modal-container {
+  border-radius: 0px !important;
+}
+
 .modal-content-box-left {
   order: 2;
   width: 336px;
