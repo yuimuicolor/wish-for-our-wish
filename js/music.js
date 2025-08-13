@@ -126,11 +126,23 @@ volumeBar.addEventListener("mousedown", (e) => {
   updateVolume(e);
   document.body.style.userSelect = "none";
 });
-
+// 드래그 시작
 volumeBar.addEventListener("touchstart", (e) => {
   isDragging = true;
   updateVolume(e);
-});
+  document.body.style.userSelect = "none";
+  document.body.style.webkitUserSelect = "none";  // 웹킷 대응 필수
+}, { passive: false });
+
+// 드래그 종료
+document.addEventListener("touchend", (e) => {
+  if (isDragging) {
+    updateVolume(e);
+  }
+  isDragging = false;
+  document.body.style.userSelect = "";
+  document.body.style.webkitUserSelect = "";
+}, { passive: false });
 
 // 마우스 드래그 중
 document.addEventListener("mousemove", (e) => {

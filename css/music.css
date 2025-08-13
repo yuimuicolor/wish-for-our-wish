@@ -477,7 +477,9 @@
   }
 
   .volume-bar {
-    touch-action: none !important;
+    touch-action: none; /* 터치 기본 제스처(스크롤, 확대 등) 막기 */
+    -webkit-user-select: none; /* 텍스트 선택 방지 (iOS) */
+    user-select: none;
   }
 
   .stars {
