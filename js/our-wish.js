@@ -171,21 +171,43 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.classList.remove("hidden");
   };
 
-  const openPhotoModal = (src) => {
+   const openPhotoModal = (src) => {
     if (!src) return;
 
-    // 버튼 숨기기 먼저
     const closeBtn = photoModal.querySelector(".modal-photo-close");
-    closeBtn.style.display = "none";
+    closeBtn.style.display = "none"; // 로딩 전 숨김
 
-    // 이미지 로딩 완료 후 버튼 보여주기
-    photoModalImg.onload = () => {
-      closeBtn.style.display = "block";
+    // 위치 계산 함수
+    const positionCloseBtn = () => {
+      const rect = photoModalImg.getBoundingClientRect();
+      closeBtn.style.position = "absolute";
     };
+
+    // 이미지 로드 완료 시
+    photoModalImg.onload = () => {
+      positionCloseBtn(); // 위치 잡기
+      closeBtn.style.display = "block"; // 보이기
+    };
+
+    // 혹시 캐시된 이미지면 onload 안 불리니까 바로 처리
+    if (photoModalImg.complete && photoModalImg.naturalWidth > 0) {
+      positionCloseBtn();
+      closeBtn.style.display = "block";
+    }
 
     photoModalImg.src = src;
     photoModal.classList.remove("hidden");
   };
+
+  // 창 크기 바뀌면 버튼 위치 다시 잡기
+  window.addEventListener("resize", () => {
+    if (!photoModal.classList.contains("hidden")) {
+      const closeBtn = photoModal.querySelector(".modal-photo-close");
+      const rect = photoModalImg.getBoundingClientRect();
+      closeBtn.style.top = `${rect.top + 20}px`;
+      closeBtn.style.left = `${rect.right - closeBtn.offsetWidth - 20}px`;
+    }
+  });
 
   mainPhoto.addEventListener("click", () => {
     openPhotoModal(mainPhoto.src);
