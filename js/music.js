@@ -50,11 +50,7 @@ const songs = [
 let currentIndex = 0;
 let isPlaying = false;
 
-const audio = new Audio(songs[currentIndex].src);
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-const track = audioCtx.createMediaElementSource(audio);
-const gainNode = audioCtx.createGain();
-track.connect(gainNode).connect(audioCtx.destination);
+const audioEl = document.getElementById("audio-element");
 
 const playButton = document.querySelector(
   ".button-box .button-item:nth-child(2)"
@@ -79,6 +75,33 @@ const volumePointer = document.querySelector(".volume-pointer");
 
 let isDragging = false;
 
+
+// Web Audio API 세팅
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+const track = audioCtx.createMediaElementSource(audioEl);
+const gainNode = audioCtx.createGain();
+track.connect(gainNode).connect(audioCtx.destination);
+
+
+// 초기 볼륨
+gainNode.gain.value = 0.8;
+setPointerByVolume(0.8);
+
+// 재생 버튼
+playButton.addEventListener("click", async () => {
+  if (audioCtx.state === "suspended") await audioCtx.resume();
+  audioEl.play();
+});
+
+
+// 볼륨 포인터 위치 설정
+function setPointerByVolume(volume) {
+  const barWidth = volumeBar.offsetWidth;
+  const pointerHalf = volumePointer.offsetWidth / 2;
+  const x = barWidth * volume;
+  volumePointer.style.left = `${x - pointerHalf}px`;
+}
+
 audio.addEventListener("ended", () => {
   if (currentIndex < songs.length - 1) {
     playNext();
@@ -99,7 +122,9 @@ function updateCurrentTime() {
     .padStart(2, "0")}`;
   timeText.textContent = formatted;
 }
-// 드래그/터치로 볼륨 조절
+
+
+// 볼륨 업데이트 함수
 function updateVolume(e) {
   let clientX;
   if (e.touches) clientX = e.touches[0].clientX;
@@ -108,70 +133,36 @@ function updateVolume(e) {
   const barRect = volumeBar.getBoundingClientRect();
   let x = clientX - barRect.left;
   x = Math.max(0, Math.min(x, barRect.width));
+
   const pointerHalf = volumePointer.offsetWidth / 2;
   volumePointer.style.left = `${x - pointerHalf}px`;
 
   const volume = x / barRect.width;
-  gainNode.gain.value = volume; // Web Audio API로 볼륨 적용
+  gainNode.gain.value = volume;
 }
 
-// 마우스 드래그 시작
+// 이벤트
 volumeBar.addEventListener("mousedown", (e) => {
   isDragging = true;
   updateVolume(e);
-  document.body.style.userSelect = "none";
 });
-// 드래그 시작
 volumeBar.addEventListener("touchstart", (e) => {
   isDragging = true;
   updateVolume(e);
-  document.body.style.userSelect = "none";
-  document.body.style.webkitUserSelect = "none";  // 웹킷 대응 필수
 }, { passive: false });
 
-// 드래그 종료
-document.addEventListener("touchend", (e) => {
-  if (isDragging) {
-    updateVolume(e);
-  }
-  isDragging = false;
-  document.body.style.userSelect = "";
-  document.body.style.webkitUserSelect = "";
-}, { passive: false });
-
-// 마우스 드래그 중
 document.addEventListener("mousemove", (e) => {
   if (!isDragging) return;
   updateVolume(e);
 });
+document.addEventListener("touchmove", (e) => {
+  if (!isDragging) return;
+  updateVolume(e);
+  e.preventDefault();
+}, { passive: false });
 
-document.addEventListener(
-  "touchmove",
-  (e) => {
-    if (!isDragging) return;
-    updateVolume(e);
-    e.preventDefault(); // isDragging일 때만 막기
-  },
-  { passive: false }
-);
-
-// 마우스 드래그 끝
-document.addEventListener("mouseup", () => {
-  isDragging = false;
-  document.body.style.userSelect = "";
-});
-
-document.addEventListener(
-  "touchend",
-  (e) => {
-    if (isDragging) {
-      updateVolume(e);
-    }
-    isDragging = false;
-    document.body.style.userSelect = "";
-  },
-  { passive: false }
-);
+document.addEventListener("mouseup", () => isDragging = false);
+document.addEventListener("touchend", () => isDragging = false);
 
 function renderPlaylist() {
   listContainer.innerHTML = "";
@@ -278,6 +269,4 @@ nextButton.addEventListener("click", playNext);
 prevButton.addEventListener("click", playPrev);
 
 renderPlaylist();
-audio.volume = 0.8;
-setPointerByVolume(0.8);
 updateUI();
