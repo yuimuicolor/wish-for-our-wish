@@ -15,7 +15,7 @@ const songs = [
     duration: "03:01",
     src: "../assets/musics/Songbird (Korean Version).mp3",
   },
-  {
+  { 
     title: "Songbird (Japanese Version)",
     duration: "03:01",
     src: "../assets/musics/Songbird (Japanese Version).mp3",
@@ -44,13 +44,13 @@ const songs = [
     title: "poppop",
     duration: "03:02",
     src: "../assets/musics/poppop.mp3",
-  },
+  }
 ];
 
 let currentIndex = 0;
 let isPlaying = false;
 
-const audioEl = document.getElementById("audio-element");
+const audio = new Audio(songs[currentIndex].src);
 
 const playButton = document.querySelector(
   ".button-box .button-item:nth-child(2)"
@@ -75,23 +75,7 @@ const volumePointer = document.querySelector(".volume-pointer");
 
 let isDragging = false;
 
-
-
-// 첫 곡 세팅
-audioEl.src = songs[currentIndex].src;
-audioEl.load();
-audioEl.volume = 0.8;
-
-
-// 볼륨 포인터 위치 설정
-function setPointerByVolume(volume) {
-  const barWidth = volumeBar.offsetWidth;
-  const pointerHalf = volumePointer.offsetWidth / 2;
-  const x = barWidth * volume;
-  volumePointer.style.left = `${x - pointerHalf}px`;
-}
-
-audioEl.addEventListener("ended", () => {
+audio.addEventListener("ended", () => {
   if (currentIndex < songs.length - 1) {
     playNext();
   } else {
@@ -100,52 +84,51 @@ audioEl.addEventListener("ended", () => {
   }
 });
 
-audioEl.addEventListener("timeupdate", updateCurrentTime);
+audio.addEventListener("timeupdate", updateCurrentTime);
 
 function updateCurrentTime() {
-  const current = audioEl.currentTime;
+  const current = audio.currentTime;
   const minutes = Math.floor(current / 60);
   const seconds = Math.floor(current % 60);
-  const formatted = `${minutes.toString().padStart(2, "0")}:${seconds
-    .toString()
-    .padStart(2, "0")}`;
+  const formatted =
+    `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   timeText.textContent = formatted;
 }
 
 
-// 볼륨 업데이트 함수
+
 function updateVolume(e) {
-  let clientX = e.touches ? e.touches[0].clientX : e.clientX;
   const barRect = volumeBar.getBoundingClientRect();
-  let x = Math.max(0, Math.min(clientX - barRect.left, barRect.width));
-  volumePointer.style.left = `${x - volumePointer.offsetWidth/2}px`;
-  audioEl.volume = x / barRect.width;
+  let x = e.clientX - barRect.left;
+
+  x = Math.max(0, Math.min(x, barRect.width));
+
+  const pointerHalf = volumePointer.offsetWidth / 2;
+  volumePointer.style.left = `${x - pointerHalf}px`;
+
+  const volume = x / barRect.width;
+  audio.volume = volume;
 }
 
-// 이벤트
+
+// 드래그 시작
 volumeBar.addEventListener("mousedown", (e) => {
   isDragging = true;
   updateVolume(e);
+  document.body.style.userSelect = "none";
 });
-volumeBar.addEventListener("touchstart", (e) => {
-  isDragging = true;
-  updateVolume(e);
-}, { passive: false });
 
-
+// 드래그 중
 document.addEventListener("mousemove", (e) => {
   if (!isDragging) return;
   updateVolume(e);
 });
-document.addEventListener("touchmove", (e) => {
-  if (!isDragging) return;
-  updateVolume(e);
-  e.preventDefault();
+
+// 드래그 끝
+document.addEventListener("mouseup", () => {
+  isDragging = false;
+  document.body.style.userSelect = "";
 });
-
-
-document.addEventListener("mouseup", () => isDragging = false);
-document.addEventListener("touchend", () => isDragging = false);
 
 function renderPlaylist() {
   listContainer.innerHTML = "";
@@ -204,11 +187,11 @@ function updateUI() {
 
 function togglePlayPause() {
   if (isPlaying) {
-    audioEl.pause();
+    audio.pause();
     playButton.querySelector("img").src = playImg;
     icon.src = pauseIcon;
   } else {
-    audioEl.play();
+    audio.play();
     playButton.querySelector("img").src = pauseImg;
     icon.src = playIcon;
   }
@@ -218,10 +201,10 @@ function togglePlayPause() {
 function playSong(index) {
   if (index < 0 || index >= songs.length) return;
   currentIndex = index;
-  audioEl.src = songs[index].src;
-  audioEl.load();
+  audio.src = songs[index].src;
+  audio.load();
   updateUI();
-  audioEl.play();
+  audio.play();
   icon.src = pauseIcon;
   playButton.querySelector("img").src = pauseImg;
   isPlaying = true;
@@ -239,9 +222,24 @@ function playPrev() {
   }
 }
 
+
+// 첫 볼륨 세팅
+function setPointerByVolume(volume) {
+  const barWidth = volumeBar.offsetWidth;
+  const pointerHalf = volumePointer.offsetWidth / 2;
+  const x = barWidth * volume;
+  volumePointer.style.left = `${x - pointerHalf}px`;
+}
+
+
+
 playButton.addEventListener("click", togglePlayPause);
 nextButton.addEventListener("click", playNext);
 prevButton.addEventListener("click", playPrev);
 
 renderPlaylist();
+audio.volume = 0.8;
+setPointerByVolume(0.8);
 updateUI();
+
+

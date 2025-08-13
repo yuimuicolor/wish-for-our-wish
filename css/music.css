@@ -168,7 +168,6 @@
     linear-gradient(0deg, #ac53ff 0%, #727bfa 100%)
   );
   box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.25) inset;
-  overflow: hidden;
 }
 
 .volume-box {
@@ -468,18 +467,14 @@
   .player-right-box {
     margin: 20px 0px;
     padding: 0px 14px;
+
   }
 
   .volume-box {
+    display: none;
     position: relative;
     width: 100%;
-    border-radius: 0;
-  }
-
-  .volume-bar {
-    touch-action: none; /* 터치 기본 제스처(스크롤, 확대 등) 막기 */
-    -webkit-user-select: none; /* 텍스트 선택 방지 (iOS) */
-    user-select: none;
+    overflow: hidden;
   }
 
   .stars {
@@ -495,10 +490,10 @@
     width: 80px;
     height: 55px;
 
-    > img {
-      width: 80px;
-      height: 55px;
-      aspect-ratio: 80/55;
-    }
+   > img {
+    width: 80px;
+    height: 55px;
+    aspect-ratio: 80/55;
   }
+}
 }
