@@ -173,11 +173,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const closeBtn = document.getElementById("photoCloseBtn");
 
+  photoModalImg.onload = () => {
+    setTimeout(() => {
+      closeBtn.style.display = "block";
+    }, 300); // 300ms 딜레이 후에 보이게
+  };
+
   // 이미지 src 바꾸고 모달 열기
   const openPhotoModal = (src) => {
     if (!src) return;
     photoModalImg.src = src;
-    closeBtn.style.display = "block";
+    // closeBtn.style.display = "block";
     photoModal.classList.remove("hidden");
   };
 
@@ -222,9 +228,6 @@ document.addEventListener("DOMContentLoaded", () => {
   allImages.forEach((img) => {
     const realSrc = img.src;
 
-    // 이미지 경로 저장하고, 로딩용으로 바꾸기
-    img.dataset.src = realSrc;
-    img.src = "./assets/images/loading.gif";
     img.style.opacity = "0"; // 먼저 안보이게
 
     // 이미지 프리로드

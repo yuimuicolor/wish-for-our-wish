@@ -360,7 +360,7 @@
 }
 
 /* 모달 내용: 정중앙 배치 */
-#photoModal .modal-content-container {
+#photo-modal-container{
   position: fixed;
   top: 50%;
   left: 50%;
@@ -380,11 +380,13 @@
 .photo-modal-image-wrapper {
   display: inline-block;
   position: relative;
+  max-height: 80vh; /* 모바일도 제한 */
+  max-width: 90vw;
 }
 
 .photo-modal-image-wrapper img {
   display: block;
-  height: 100%;
+  height: auto;
   max-height: 80vh; /* 최대 높이 80vh */
   width: auto;
   max-width: 90vw;
