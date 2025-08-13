@@ -15,7 +15,7 @@ const songs = [
     duration: "03:01",
     src: "../assets/musics/Songbird (Korean Version).mp3",
   },
-  { 
+  {
     title: "Songbird (Japanese Version)",
     duration: "03:01",
     src: "../assets/musics/Songbird (Japanese Version).mp3",
@@ -44,7 +44,7 @@ const songs = [
     title: "poppop",
     duration: "03:02",
     src: "../assets/musics/poppop.mp3",
-  }
+  },
 ];
 
 let currentIndex = 0;
@@ -90,15 +90,13 @@ function updateCurrentTime() {
   const current = audio.currentTime;
   const minutes = Math.floor(current / 60);
   const seconds = Math.floor(current % 60);
-  const formatted =
-    `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+  const formatted = `${minutes.toString().padStart(2, "0")}:${seconds
+    .toString()
+    .padStart(2, "0")}`;
   timeText.textContent = formatted;
 }
 
-
-
 function updateVolume(e) {
-  e.preventDefault(); // 터치 이벤트 기본 스크롤 방지
 
   let clientX;
 
@@ -132,9 +130,7 @@ volumeBar.addEventListener("mousedown", (e) => {
 volumeBar.addEventListener("touchstart", (e) => {
   isDragging = true;
   updateVolume(e);
-  document.body.style.userSelect = "none";
-}, { passive: false });
-
+});
 
 // 마우스 드래그 중
 document.addEventListener("mousemove", (e) => {
@@ -142,12 +138,15 @@ document.addEventListener("mousemove", (e) => {
   updateVolume(e);
 });
 
-// 터치 드래그 중
-document.addEventListener("touchmove", (e) => {
-  if (!isDragging) return;
-  updateVolume(e);
-  e.preventDefault(); // 이게 꼭 있어야 함!
-}, { passive: false });
+document.addEventListener(
+  "touchmove",
+  (e) => {
+    if (!isDragging) return;
+    updateVolume(e);
+    e.preventDefault(); // isDragging일 때만 막기
+  },
+  { passive: false }
+);
 
 // 마우스 드래그 끝
 document.addEventListener("mouseup", () => {
@@ -155,13 +154,17 @@ document.addEventListener("mouseup", () => {
   document.body.style.userSelect = "";
 });
 
-document.addEventListener("touchend", (e) => {
-  if (isDragging) {
-    updateVolume(e);
-  }
-  isDragging = false;
-  document.body.style.userSelect = "";
-}, { passive: false });
+document.addEventListener(
+  "touchend",
+  (e) => {
+    if (isDragging) {
+      updateVolume(e);
+    }
+    isDragging = false;
+    document.body.style.userSelect = "";
+  },
+  { passive: false }
+);
 
 function renderPlaylist() {
   listContainer.innerHTML = "";
@@ -255,7 +258,6 @@ function playPrev() {
   }
 }
 
-
 // 첫 볼륨 세팅
 function setPointerByVolume(volume) {
   const barWidth = volumeBar.offsetWidth;
@@ -263,8 +265,6 @@ function setPointerByVolume(volume) {
   const x = barWidth * volume;
   volumePointer.style.left = `${x - pointerHalf}px`;
 }
-
-
 
 playButton.addEventListener("click", togglePlayPause);
 nextButton.addEventListener("click", playNext);
@@ -274,5 +274,3 @@ renderPlaylist();
 audio.volume = 0.8;
 setPointerByVolume(0.8);
 updateUI();
-
-
