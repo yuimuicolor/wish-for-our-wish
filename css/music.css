@@ -468,13 +468,16 @@
   .player-right-box {
     margin: 20px 0px;
     padding: 0px 14px;
-
   }
 
   .volume-box {
     position: relative;
     width: 100%;
     border-radius: 0;
+
+    touch-action: none;
+    -webkit-user-select: none; /* iOS에서 선택 방지 */
+    user-select: none;
   }
 
   .stars {
@@ -490,10 +493,10 @@
     width: 80px;
     height: 55px;
 
-   > img {
-    width: 80px;
-    height: 55px;
-    aspect-ratio: 80/55;
+    > img {
+      width: 80px;
+      height: 55px;
+      aspect-ratio: 80/55;
+    }
   }
-}
 }
