@@ -177,17 +177,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const closeBtn = document.getElementById("photoCloseBtn");
 
-  photoModalImg.onload = () => {
-    setTimeout(() => {
-      closeBtn.style.display = "block";
-    }, 300); // 300ms 딜레이 후에 보이게
-  };
-
   // 이미지 src 바꾸고 모달 열기
   const openPhotoModal = (src) => {
     if (!src) return;
     photoModalImg.src = src;
-    // closeBtn.style.display = "block";
+    closeBtn.style.display = "block";
     photoModal.classList.remove("hidden");
   };
 

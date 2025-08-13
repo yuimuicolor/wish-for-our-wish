@@ -134,11 +134,13 @@
 .modal-image-wrapper {
   position: relative;
   display: inline-block;
+  max-height: 80vh;
+  max-width: 90vw;
 }
 
 .modal-image-wrapper img {
   display: block;
-  height: 100%;
+  height: auto;
   max-height: 80vh; /* 최대 높이 80vh */
   width: auto;
   max-width: 90vw;
@@ -152,12 +154,14 @@
   right: 20px;
   z-index: 2;
   cursor: pointer;
-  width: 30px;
-  height: 30px;
+}
+
+.close-btn > img {
+  width: 40px;
+  height: 40px;
 }
 
 @media (max-width: 480px) {
-
   .main-container {
     padding: 38px 20px;
   }
@@ -204,7 +208,7 @@
   }
 
   .close-btn {
-    top: 10px;
-    right: 10px;
+    top: 8px;
+    right: 8px;
   }
 }
