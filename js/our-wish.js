@@ -179,8 +179,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 위치 계산 함수
     const positionCloseBtn = () => {
-      const rect = photoModalImg.getBoundingClientRect();
       closeBtn.style.position = "absolute";
+      closeBtn.style.top = `10px`;
+      closeBtn.style.right = `10px`;
     };
 
     photoModalImg.onload = () => {
@@ -203,10 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 창 크기 바뀌면 버튼 위치 다시 잡기
   window.addEventListener("resize", () => {
     if (!photoModal.classList.contains("hidden")) {
-      const closeBtn = photoModal.querySelector(".modal-photo-close");
-      const rect = photoModalImg.getBoundingClientRect();
-      closeBtn.style.top = `${rect.top + 20}px`;
-      closeBtn.style.left = `${rect.right - closeBtn.offsetWidth - 20}px`;
+      positionCloseBtn();
     }
   });
 
