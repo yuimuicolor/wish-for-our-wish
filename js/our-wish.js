@@ -173,42 +173,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const closeBtn = document.getElementById("photoCloseBtn");
 
-const positionCloseBtn = () => {
-        closeBtn.style.display = "block";
-  // 닫기 버튼 위치 고정(top:8px, right:8px)
-  closeBtn.style.top = "8px";
-  closeBtn.style.right = "8px";
-  // display는 따로 안 건드려도 됨(이미 onload에서 show 중)
-};
-
-
-  // 이미지 로드 후
-  photoModalImg.onload = () => {
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        positionCloseBtn();
-      });
-    });
-  };
-
   // 이미지 src 바꾸고 모달 열기
   const openPhotoModal = (src) => {
     if (!src) return;
     photoModalImg.src = src;
-    closeBtn.style.display = "none";
+    closeBtn.style.display = "block";
     photoModal.classList.remove("hidden");
   };
-
-  window.addEventListener("resize", () => {
-    if (!photoModal.classList.contains("hidden")) {
-      positionCloseBtn();
-    }
-  });
-  window.addEventListener("orientationchange", () => {
-    if (!photoModal.classList.contains("hidden")) {
-      positionCloseBtn();
-    }
-  });
 
   mainPhoto.addEventListener("click", () => {
     openPhotoModal(mainPhoto.src);
