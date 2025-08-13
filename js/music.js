@@ -70,8 +70,8 @@ const titleText = document.querySelector(".title-text");
 const timeText = document.querySelector(".playing-time-title span");
 const listContainer = document.querySelector(".list-container");
 
-const audioWaveGifContainer = document.getElementById("audioWaveGif");
-const audioWavePngContainer = document.getElementById("audioWavePng");
+const chipiCatGifContainer = document.getElementById("chipiCatGif");
+const chipiCatPngContainer = document.getElementById("chipiCatPng");
 
 const volumeBar = document.querySelector(".volume-bar");
 const volumePointer = document.querySelector(".volume-pointer");
@@ -231,17 +231,17 @@ function togglePlayPause() {
     playButton.querySelector("img").src = playImg;
     icon.src = pauseIcon;
 
-    audioWavePngContainer.style.display = "block";
-    audioWaveGifContainer.style.display = "none";
+    chipiCatPngContainer.style.display = "block";
+    chipiCatGifContainer.style.display = "none";
 
   } else {
     audio.play();
     playButton.querySelector("img").src = pauseImg;
     icon.src = playIcon;
-
     
-    audioWavePngContainer.style.display = "none";
-    audioWaveGifContainer.style.display = "block";
+    chipiCatPngContainer.style.display = "none";
+    chipiCatGifContainer.style.display = "block";
+
   }
   isPlaying = !isPlaying;
 }

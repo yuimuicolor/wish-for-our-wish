@@ -124,16 +124,20 @@
   align-items: center;
   justify-content: space-between;
   width: 214px;
-  height: 130px;
+  height: 150px;
   padding: 10px 0px;
 }
 
-#audioWaveGif {
+#chipiCatGif {
   display: none;
 }
 
-#audioWavePng {
+#chipiCatPng {
   display: block;
+}
+
+.player-left-box > div:nth-child(2) > img {
+  height: 70px;
 }
 
 .time-box {
@@ -167,7 +171,7 @@
   position: relative;
   display: flex;
   width: 100%;
-  height: 130px;
+  height: 160px;
   border-radius: 10px;
   border: 1px solid #666;
   background: var(
@@ -229,7 +233,7 @@
   flex-direction: column;
   align-items: flex-end;
   width: 100%;
-  gap: 10px;
+  gap: 14px;
   margin: 14px 10px 0px 0px;
   overflow: hidden;
 }
@@ -265,6 +269,9 @@
   100% {
     transform: translateX(-100%);
   }
+}
+
+.player-right-box > div:nth-last-child(1) {
 }
 
 /* ✅ 플레이리스트용 제목 (시간 침범 방지) */
@@ -459,7 +466,7 @@
 
   .player-left-box {
     width: 100%;
-    align-items: self-start;
+    height: 160px;
     gap: 6px;
   }
 
@@ -474,7 +481,6 @@
   .player-right-box {
     margin: 20px 0px;
     padding: 0px 14px;
-
   }
 
   .volume-box {
@@ -497,10 +503,10 @@
     width: 80px;
     height: 55px;
 
-   > img {
-    width: 80px;
-    height: 55px;
-    aspect-ratio: 80/55;
+    > img {
+      width: 80px;
+      height: 55px;
+      aspect-ratio: 80/55;
+    }
   }
-}
 }
