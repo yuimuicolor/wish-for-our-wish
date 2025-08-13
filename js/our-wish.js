@@ -188,13 +188,14 @@ const positionCloseBtn = () => {
 };
 
   // 이미지 로드 후
-  photoModalImg.onload = () => {
-    // 모달 열렸을 때 딜레이 없이 위치 재설정
+photoModalImg.onload = () => {
+  requestAnimationFrame(() => {
     requestAnimationFrame(() => {
       positionCloseBtn();
       closeBtn.style.display = "block";
     });
-  };
+  });
+};
 
   // 이미지 src 바꾸고 모달 열기
   const openPhotoModal = (src) => {
@@ -203,13 +204,17 @@ const positionCloseBtn = () => {
     photoModalImg.src = src;
     photoModal.classList.remove("hidden");
   };
+window.addEventListener("resize", () => {
+  if (!photoModal.classList.contains("hidden")) {
+    positionCloseBtn();
+  }
+});
+window.addEventListener("orientationchange", () => {
+  if (!photoModal.classList.contains("hidden")) {
+    positionCloseBtn();
+  }
+});
 
-  // 리사이즈 시에도 위치 재조정
-  window.addEventListener("resize", () => {
-    if (!photoModal.classList.contains("hidden")) {
-      positionCloseBtn();
-    }
-  });
   mainPhoto.addEventListener("click", () => {
     openPhotoModal(mainPhoto.src);
   });
