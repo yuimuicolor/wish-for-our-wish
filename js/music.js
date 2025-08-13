@@ -98,8 +98,20 @@ function updateCurrentTime() {
 
 
 function updateVolume(e) {
+  e.preventDefault(); // 터치 이벤트 기본 스크롤 방지
+
+  let clientX;
+
+  if (e.touches) {
+    // 터치 이벤트일 때 첫 번째 터치 좌표 사용
+    clientX = e.touches[0].clientX;
+  } else {
+    // 마우스 이벤트일 때
+    clientX = e.clientX;
+  }
+
   const barRect = volumeBar.getBoundingClientRect();
-  let x = e.clientX - barRect.left;
+  let x = clientX - barRect.left;
 
   x = Math.max(0, Math.min(x, barRect.width));
 
@@ -110,26 +122,44 @@ function updateVolume(e) {
   audio.volume = volume;
 }
 
-
-// 드래그 시작
+// 마우스 드래그 시작
 volumeBar.addEventListener("mousedown", (e) => {
   isDragging = true;
   updateVolume(e);
   document.body.style.userSelect = "none";
 });
 
-// 드래그 중
+// 터치 드래그 시작
+volumeBar.addEventListener("touchstart", (e) => {
+  isDragging = true;
+  updateVolume(e);
+  document.body.style.userSelect = "none";
+});
+
+// 마우스 드래그 중
 document.addEventListener("mousemove", (e) => {
   if (!isDragging) return;
   updateVolume(e);
 });
 
-// 드래그 끝
+// 터치 드래그 중
+document.addEventListener("touchmove", (e) => {
+  if (!isDragging) return;
+  updateVolume(e);
+  e.preventDefault();  // 터치 시 스크롤 방지
+});
+
+// 마우스 드래그 끝
 document.addEventListener("mouseup", () => {
   isDragging = false;
   document.body.style.userSelect = "";
 });
 
+// 터치 드래그 끝
+document.addEventListener("touchend", () => {
+  isDragging = false;
+  document.body.style.userSelect = "";
+});
 
 function renderPlaylist() {
   listContainer.innerHTML = "";
