@@ -102,7 +102,7 @@ function setPointerByVolume(volume) {
   volumePointer.style.left = `${x - pointerHalf}px`;
 }
 
-audio.addEventListener("ended", () => {
+audioEl.addEventListener("ended", () => {
   if (currentIndex < songs.length - 1) {
     playNext();
   } else {
@@ -111,10 +111,10 @@ audio.addEventListener("ended", () => {
   }
 });
 
-audio.addEventListener("timeupdate", updateCurrentTime);
+audioEl.addEventListener("timeupdate", updateCurrentTime);
 
 function updateCurrentTime() {
-  const current = audio.currentTime;
+  const current = audioEl.currentTime;
   const minutes = Math.floor(current / 60);
   const seconds = Math.floor(current % 60);
   const formatted = `${minutes.toString().padStart(2, "0")}:${seconds
@@ -221,11 +221,11 @@ function updateUI() {
 
 function togglePlayPause() {
   if (isPlaying) {
-    audio.pause();
+    audioEl.pause();
     playButton.querySelector("img").src = playImg;
     icon.src = pauseIcon;
   } else {
-    audio.play();
+    audioEl.play();
     playButton.querySelector("img").src = pauseImg;
     icon.src = playIcon;
   }
@@ -235,10 +235,10 @@ function togglePlayPause() {
 function playSong(index) {
   if (index < 0 || index >= songs.length) return;
   currentIndex = index;
-  audio.src = songs[index].src;
-  audio.load();
+  audioEl.src = songs[index].src;
+  audioEl.load();
   updateUI();
-  audio.play();
+  audioEl.play();
   icon.src = pauseIcon;
   playButton.querySelector("img").src = pauseImg;
   isPlaying = true;
