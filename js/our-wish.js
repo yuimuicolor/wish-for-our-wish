@@ -173,11 +173,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const closeBtn = document.getElementById("photoCloseBtn");
 
-  const positionCloseBtn = () => {
-    closeBtn.style.top = "8px";
-    closeBtn.style.right = "8px";
-    // 굳이 rect 필요 없으면 이렇게 고정도 가능
-  };
+const positionCloseBtn = () => {
+  // wrapper는 상대 위치, 닫기 버튼은 absolute top/right 8px 고정이라 보통 CSS로 끝나야 하는데
+  // 모바일에서 문제 있을 땐 강제로 리플로우 트리거를 넣어보기
+  const wrapper = photoModal.querySelector(".photo-modal-image-wrapper");
+  wrapper.style.display = "inline-block"; // 원래대로
+
+  // 강제로 리플로우 발생시키기
+  wrapper.offsetHeight;
+
+  // 닫기 버튼은 CSS로 고정 위치 유지
+  closeBtn.style.top = "8px";
+  closeBtn.style.right = "8px";
+};
+
   // 이미지 로드 후
   photoModalImg.onload = () => {
     // 모달 열렸을 때 딜레이 없이 위치 재설정
