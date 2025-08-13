@@ -51,6 +51,10 @@ let currentIndex = 0;
 let isPlaying = false;
 
 const audio = new Audio(songs[currentIndex].src);
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+const track = audioCtx.createMediaElementSource(audio);
+const gainNode = audioCtx.createGain();
+track.connect(gainNode).connect(audioCtx.destination);
 
 const playButton = document.querySelector(
   ".button-box .button-item:nth-child(2)"
@@ -95,29 +99,20 @@ function updateCurrentTime() {
     .padStart(2, "0")}`;
   timeText.textContent = formatted;
 }
-
+// 드래그/터치로 볼륨 조절
 function updateVolume(e) {
-
   let clientX;
-
-  if (e.touches) {
-    // 터치 이벤트일 때 첫 번째 터치 좌표 사용
-    clientX = e.touches[0].clientX;
-  } else {
-    // 마우스 이벤트일 때
-    clientX = e.clientX;
-  }
+  if (e.touches) clientX = e.touches[0].clientX;
+  else clientX = e.clientX;
 
   const barRect = volumeBar.getBoundingClientRect();
   let x = clientX - barRect.left;
-
   x = Math.max(0, Math.min(x, barRect.width));
-
   const pointerHalf = volumePointer.offsetWidth / 2;
   volumePointer.style.left = `${x - pointerHalf}px`;
 
   const volume = x / barRect.width;
-  audio.volume = volume;
+  gainNode.gain.value = volume; // Web Audio API로 볼륨 적용
 }
 
 // 마우스 드래그 시작
