@@ -173,29 +173,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const closeBtn = document.getElementById("photoCloseBtn");
 
-const positionCloseBtn = () => {
-  // wrapper는 상대 위치, 닫기 버튼은 absolute top/right 8px 고정이라 보통 CSS로 끝나야 하는데
-  // 모바일에서 문제 있을 땐 강제로 리플로우 트리거를 넣어보기
-  const wrapper = photoModal.querySelector(".photo-modal-image-wrapper");
-  wrapper.style.display = "inline-block"; // 원래대로
-
-  // 강제로 리플로우 발생시키기
-  wrapper.offsetHeight;
-
-  // 닫기 버튼은 CSS로 고정 위치 유지
-  closeBtn.style.top = "8px";
-  closeBtn.style.right = "8px";
-};
-
   // 이미지 로드 후
-photoModalImg.onload = () => {
-  requestAnimationFrame(() => {
+  photoModalImg.onload = () => {
     requestAnimationFrame(() => {
-      positionCloseBtn();
-      closeBtn.style.display = "block";
+      requestAnimationFrame(() => {
+        closeBtn.style.display = "block";
+      });
     });
-  });
-};
+  };
 
   // 이미지 src 바꾸고 모달 열기
   const openPhotoModal = (src) => {
@@ -204,16 +189,17 @@ photoModalImg.onload = () => {
     photoModalImg.src = src;
     photoModal.classList.remove("hidden");
   };
-window.addEventListener("resize", () => {
-  if (!photoModal.classList.contains("hidden")) {
-    positionCloseBtn();
-  }
-});
-window.addEventListener("orientationchange", () => {
-  if (!photoModal.classList.contains("hidden")) {
-    positionCloseBtn();
-  }
-});
+
+  window.addEventListener("resize", () => {
+    if (!photoModal.classList.contains("hidden")) {
+      positionCloseBtn();
+    }
+  });
+  window.addEventListener("orientationchange", () => {
+    if (!photoModal.classList.contains("hidden")) {
+      positionCloseBtn();
+    }
+  });
 
   mainPhoto.addEventListener("click", () => {
     openPhotoModal(mainPhoto.src);
