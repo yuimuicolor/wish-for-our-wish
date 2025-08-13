@@ -129,12 +129,12 @@ volumeBar.addEventListener("mousedown", (e) => {
   document.body.style.userSelect = "none";
 });
 
-// 터치 드래그 시작
 volumeBar.addEventListener("touchstart", (e) => {
   isDragging = true;
   updateVolume(e);
   document.body.style.userSelect = "none";
-});
+}, { passive: false });
+
 
 // 마우스 드래그 중
 document.addEventListener("mousemove", (e) => {
