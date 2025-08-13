@@ -177,37 +177,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeBtn = photoModal.querySelector(".modal-photo-close");
     closeBtn.style.display = "none"; // 로딩 전 숨김
 
-    // 위치 계산 함수
-    const positionCloseBtn = () => {
-      closeBtn.style.position = "absolute";
-      closeBtn.style.top = `10px`;
-      closeBtn.style.right = `10px`;
-    };
-
     photoModalImg.onload = () => {
       requestAnimationFrame(() => {
-        positionCloseBtn(); // 위치 잡기
         closeBtn.style.display = "block"; // 보이기
       });
     };
 
     // 혹시 캐시된 이미지면 onload 안 불리니까 바로 처리
     if (photoModalImg.complete && photoModalImg.naturalWidth > 0) {
-      positionCloseBtn();
       closeBtn.style.display = "block";
     }
 
     photoModalImg.src = src;
     photoModal.classList.remove("hidden");
   };
-
-  // 창 크기 바뀌면 버튼 위치 다시 잡기
-  window.addEventListener("resize", () => {
-    if (!photoModal.classList.contains("hidden")) {
-      positionCloseBtn();
-    }
-  });
-
+  
   mainPhoto.addEventListener("click", () => {
     openPhotoModal(mainPhoto.src);
   });
