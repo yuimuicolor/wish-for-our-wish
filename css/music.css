@@ -476,6 +476,10 @@
     border-radius: 0;
   }
 
+  .volumne-bar {
+    touch-action: none !important;
+  }
+
   .stars {
     display: none;
   }
