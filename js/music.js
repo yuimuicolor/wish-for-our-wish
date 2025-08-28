@@ -93,13 +93,13 @@ function updateCurrentTime() {
   const current = audio.currentTime;
   const minutes = Math.floor(current / 60);
   const seconds = Math.floor(current % 60);
-  const formatted =
-    `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+  const formatted = `${minutes.toString().padStart(2, "0")}:${seconds
+    .toString()
+    .padStart(2, "0")}`;
   timeText.textContent = formatted;
 }
 
 function updateVolume(e) {
-
   let clientX;
 
   if (e.touches) {
@@ -116,7 +116,7 @@ function updateVolume(e) {
   x = Math.max(0, Math.min(x, barRect.width));
 
   const pointerHalf = volumePointer.offsetWidth / 2;
-  volumePointer.style.left =`${x - pointerHalf}px`;
+  volumePointer.style.left = `${x - pointerHalf}px`;
 
   const volume = x / barRect.width;
   audio.volume = volume;
@@ -223,8 +223,6 @@ function updateUI() {
   }
 }
 
-
-
 function togglePlayPause() {
   if (isPlaying) {
     audio.pause();
@@ -233,15 +231,13 @@ function togglePlayPause() {
 
     chipiCatPngContainer.style.display = "block";
     chipiCatGifContainer.style.display = "none";
-
   } else {
     audio.play();
     playButton.querySelector("img").src = pauseImg;
     icon.src = playIcon;
-    
+
     chipiCatPngContainer.style.display = "none";
     chipiCatGifContainer.style.display = "block";
-
   }
   isPlaying = !isPlaying;
 }
@@ -256,6 +252,9 @@ function playSong(index) {
   icon.src = pauseIcon;
   playButton.querySelector("img").src = pauseImg;
   isPlaying = true;
+
+  chipiCatPngContainer.style.display = "none";
+  chipiCatGifContainer.style.display = "block";
 }
 
 function playNext() {
