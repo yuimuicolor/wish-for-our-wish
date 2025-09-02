@@ -45,6 +45,41 @@ const songs = [
     duration: "03:02",
     src: "../assets/musics/poppop.mp3",
   },
+  {
+    title: "Color",
+    duration: "03:00",
+    src: "../assets/musics/Color.mp3",
+  },
+  {
+    title: "Surf",
+    duration: "03:04",
+    src: "../assets/musics/Surf.mp3",
+  },
+  {
+    title: "Baby Blue",
+    duration: "02:31",
+    src: "../assets/musics/Baby Blue.mp3",
+  },
+  {
+    title: "Cheat Code",
+    duration: "03:01",
+    src: "../assets/musics/Cheat Code.mp3",
+  },
+  {
+    title: "Videohood",
+    duration: "03:01",
+    src: "../assets/musics/Videohood.mp3",
+  },
+  {
+    title: "WICHU",
+    duration: "03:28",
+    src: "../assets/musics/WICHU.mp3",
+  },
+  {
+    title: "고양이 릴스 Reel-ationship",
+    duration: "03:09",
+    src: "../assets/musics/고양이 릴스.mp3",
+  },
 ];
 
 let currentIndex = 0;
