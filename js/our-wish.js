@@ -4,16 +4,16 @@ const memberData = {
     gradient: ["#AA80FF", "#7A44E6"],
     textColor: "#7A44E6",
     textContents: ["시온 SION シオン", "2002.05.11", "Mokpo, Korea", "🌷"],
-    mainImage: "./assets/images/ourwish/sion.jpg",
+    mainImage: "./assets/images/ourwish/sion.webp",
     images: [
-      "./assets/images/ourwish/sion2.jpg",
-      "./assets/images/ourwish/sion3.jpg",
-      "./assets/images/ourwish/sion4.jpg",
+      "./assets/images/ourwish/sion2.webp",
+      "./assets/images/ourwish/sion3.webp",
+      "./assets/images/ourwish/sion4.webp",
     ],
     smallImages: [
-      "./assets/images/ourwish/small-sion2.jpg",
-      "./assets/images/ourwish/small-sion3.jpg",
-      "./assets/images/ourwish/small-sion4.jpg",
+      "./assets/images/ourwish/small-sion2.webp",
+      "./assets/images/ourwish/small-sion3.webp",
+      "./assets/images/ourwish/small-sion4.webp",
     ],
   },
   riku: {
@@ -21,16 +21,16 @@ const memberData = {
     gradient: ["#F6527B", "#ca264fff"],
     textColor: "#E33560",
     textContents: ["리쿠 RIKU リク", "2003.06.28", "Fukui, Japan", "🐿️🐈‍⬛"],
-    mainImage: "./assets/images/ourwish/riku.jpg",
+    mainImage: "./assets/images/ourwish/riku.webp",
     images: [
-      "./assets/images/ourwish/riku2.jfif",
-      "./assets/images/ourwish/riku3.jfif",
-      "./assets/images/ourwish/riku4.jfif",
+      "./assets/images/ourwish/riku2.webp",
+      "./assets/images/ourwish/riku3.webp",
+      "./assets/images/ourwish/riku4.webp",
     ],
     smallImages: [
-      "./assets/images/ourwish/small-riku2.jpg",
-      "./assets/images/ourwish/small-riku3.jpg",
-      "./assets/images/ourwish/small-riku4.jpg",
+      "./assets/images/ourwish/small-riku2.webp",
+      "./assets/images/ourwish/small-riku3.webp",
+      "./assets/images/ourwish/small-riku4.webp",
     ],
   },
   yushi: {
@@ -38,16 +38,16 @@ const memberData = {
     gradient: ["#35B8EB", "#2D9ECA"],
     textColor: "#2D9ECA",
     textContents: ["유우시 YUSHI ユウシ", "2004.04.05", "Tokyo, Japan", "⭐🐈"],
-    mainImage: "./assets/images/ourwish/yushi.jpg",
+    mainImage: "./assets/images/ourwish/yushi.webp",
     images: [
-      "./assets/images/ourwish/yushi2.jfif",
-      "./assets/images/ourwish/yushi3.jfif",
-      "./assets/images/ourwish/yushi4.jfif",
+      "./assets/images/ourwish/yushi2.webp",
+      "./assets/images/ourwish/yushi3.webp",
+      "./assets/images/ourwish/yushi4.webp",
     ],
     smallImages: [
-      "./assets/images/ourwish/small-yushi2.jpg",
-      "./assets/images/ourwish/small-yushi3.jpg",
-      "./assets/images/ourwish/small-yushi4.jpg",
+      "./assets/images/ourwish/small-yushi2.webp",
+      "./assets/images/ourwish/small-yushi3.webp",
+      "./assets/images/ourwish/small-yushi4.webp",
     ],
   },
   jaehee: {
@@ -55,16 +55,16 @@ const memberData = {
     gradient: ["#47F058", "#1ACA2C"],
     textColor: "#1ACA2C",
     textContents: ["재희 JAEHEE ジェヒ", "2005.06.21", "Daegu, Korea", "🌳"],
-    mainImage: "./assets/images/ourwish/jaehee.jpg",
+    mainImage: "./assets/images/ourwish/jaehee.webp",
     images: [
-      "./assets/images/ourwish/jaehee2.jfif",
-      "./assets/images/ourwish/jaehee3.jfif",
-      "./assets/images/ourwish/jaehee4.jfif",
+      "./assets/images/ourwish/jaehee2.webp",
+      "./assets/images/ourwish/jaehee3.webp",
+      "./assets/images/ourwish/jaehee4.webp",
     ],
     smallImages: [
-      "./assets/images/ourwish/small-jaehee2.jpg",
-      "./assets/images/ourwish/small-jaehee3.jpg",
-      "./assets/images/ourwish/small-jaehee4.jpg",
+      "./assets/images/ourwish/small-jaehee2.webp",
+      "./assets/images/ourwish/small-jaehee3.webp",
+      "./assets/images/ourwish/small-jaehee4.webp",
     ],
   },
   ryo: {
@@ -72,16 +72,16 @@ const memberData = {
     gradient: ["#DBEB28", "#CDDE19"],
     textColor: "#CDDE19",
     textContents: ["료 RYO リョウ", "2007.08.04", "Kyoto, Japan", "🦭"],
-    mainImage: "./assets/images/ourwish/ryo.jpg",
+    mainImage: "./assets/images/ourwish/ryo.webp",
     images: [
-      "./assets/images/ourwish/ryo2.jpg",
-      "./assets/images/ourwish/ryo3.jpg",
-      "./assets/images/ourwish/ryo4.jpg",
+      "./assets/images/ourwish/ryo2.webp",
+      "./assets/images/ourwish/ryo3.webp",
+      "./assets/images/ourwish/ryo4.webp",
     ],
     smallImages: [
-      "./assets/images/ourwish/small-ryo2.jpg",
-      "./assets/images/ourwish/small-ryo3.jpg",
-      "./assets/images/ourwish/small-ryo4.jpg",
+      "./assets/images/ourwish/small-ryo2.webp",
+      "./assets/images/ourwish/small-ryo3.webp",
+      "./assets/images/ourwish/small-ryo4.webp",
     ],
   },
   sakuya: {
@@ -94,16 +94,16 @@ const memberData = {
       "Saitama, Japan",
       "🥐🐼",
     ],
-    mainImage: "./assets/images/ourwish/sakuya.jpg",
+    mainImage: "./assets/images/ourwish/sakuya.webp",
     images: [
-      "./assets/images/ourwish/sakuya2.jpg",
-      "./assets/images/ourwish/sakuya3.jpg",
-      "./assets/images/ourwish/sakuya4.jpg",
+      "./assets/images/ourwish/sakuya2.webp",
+      "./assets/images/ourwish/sakuya3.webp",
+      "./assets/images/ourwish/sakuya4.webp",
     ],
     smallImages: [
-      "./assets/images/ourwish/small-sakuya2.jpg",
-      "./assets/images/ourwish/small-sakuya3.jpg",
-      "./assets/images/ourwish/small-sakuya4.jpg",
+      "./assets/images/ourwish/small-sakuya2.webp",
+      "./assets/images/ourwish/small-sakuya3.webp",
+      "./assets/images/ourwish/small-sakuya4.webp",
     ],
   },
 };
@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const textContents = modal.querySelectorAll(".text-content");
   const photoBoxes = modal.querySelectorAll(".photo-box img");
   const mainPhoto = modal.querySelector(
-    ".modal-content-box-right .modal-photo-container img"
+    ".modal-content-box-right .modal-photo-container img",
   );
   const modalContentContainer = modal.querySelector(".modal-content-container");
   const nameSpan = modal.querySelector(".modal-name");
@@ -158,8 +158,8 @@ document.addEventListener("DOMContentLoaded", () => {
       memberKey === "sakuya"
         ? "62px"
         : memberKey === "jaehee"
-        ? "68px"
-        : "80px";
+          ? "68px"
+          : "80px";
 
     // 이름 그라디언트
     nameSpan.style.background = `linear-gradient(180deg, ${data.gradient[0]} 0%, #fff 50%, ${data.gradient[1]} 100%)`;
@@ -169,10 +169,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     modal.classList.remove("hidden");
 
-    
     // 스크롤 위치 초기화
     modalContentContainer.scrollTop = 0;
-    
   };
 
   const closeBtn = document.getElementById("photoCloseBtn");
@@ -240,7 +238,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     temp.onerror = () => {
-      img.src = "./assets/images/image-error.png";
+      img.src = "./assets/images/image-error.webp";
       img.style.opacity = "1";
     };
 

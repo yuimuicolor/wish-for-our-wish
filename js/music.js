@@ -88,19 +88,19 @@ let isPlaying = false;
 const audio = new Audio(songs[currentIndex].src);
 
 const playButton = document.querySelector(
-  ".button-box .button-item:nth-child(2)"
+  ".button-box .button-item:nth-child(2)",
 );
 const prevButton = document.querySelector(
-  ".button-box .button-item:nth-child(1)"
+  ".button-box .button-item:nth-child(1)",
 );
 const nextButton = document.querySelector(
-  ".button-box .button-item:nth-child(3)"
+  ".button-box .button-item:nth-child(3)",
 );
 const icon = document.querySelector(".status-icon img");
-const playImg = "./assets/images/music/button-play.png";
-const pauseImg = "./assets/images/music/button-pause.png";
-const playIcon = "./assets/images/music/icon-play.png";
-const pauseIcon = "./assets/images/music/icon-pause.png";
+const playImg = "./assets/images/music/button-play.webp";
+const pauseImg = "./assets/images/music/button-pause.webp";
+const playIcon = "./assets/images/music/icon-play.webp";
+const pauseIcon = "./assets/images/music/icon-pause.webp";
 const titleText = document.querySelector(".title-text");
 const timeText = document.querySelector(".playing-time-title span");
 const listContainer = document.querySelector(".list-container");
@@ -182,7 +182,7 @@ document.addEventListener(
     updateVolume(e);
     e.preventDefault(); // isDragging일 때만 막기
   },
-  { passive: false }
+  { passive: false },
 );
 
 // 마우스 드래그 끝
@@ -200,7 +200,7 @@ document.addEventListener(
     isDragging = false;
     document.body.style.userSelect = "";
   },
-  { passive: false }
+  { passive: false },
 );
 
 function renderPlaylist() {

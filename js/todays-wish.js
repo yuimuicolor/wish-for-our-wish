@@ -34,7 +34,8 @@ const bg = modal.querySelector(".modal-bg");
 const closeBtnImg = modal.querySelector(".close-btn-img");
 const title = modal.querySelector(".title-img");
 const tamaBg = modal.querySelector(".tamagochi-bg");
-const tamaImg = modal.querySelector(".tamagochi-img");const buttonStars = modal.querySelectorAll(".button-star");
+const tamaImg = modal.querySelector(".tamagochi-img");
+const buttonStars = modal.querySelectorAll(".button-star");
 const sub = modal.querySelector(".subtitle-img");
 
 // 🌠 보이스 버튼들
@@ -46,17 +47,16 @@ const openRandomModal = () => {
   currentMember = key;
 
   // 이미지 교체
-  bg.src = `./assets/images/todays-wish/background_${key}.png`;
-  closeBtnImg.src = `./assets/images/todays-wish/close-btn-${key}.png`;
-  title.src = `./assets/images/todays-wish/title_${key}.png`;
-  tamaBg.src = `./assets/images/todays-wish/tamagochi_${key}.png`;
-  tamaImg.src = `./assets/images/todays-wish/small_${key}.png`;
+  bg.src = `./assets/images/todays-wish/background_${key}.webp`;
+  closeBtnImg.src = `./assets/images/todays-wish/close-btn-${key}.webp`;
+  title.src = `./assets/images/todays-wish/title_${key}.webp`;
+  tamaBg.src = `./assets/images/todays-wish/tamagochi_${key}.webp`;
+  tamaImg.src = `./assets/images/todays-wish/small_${key}.webp`;
   buttonStars.forEach((img) => {
-    img.src = `./assets/images/todays-wish/star_${key}.png`;
+    img.src = `./assets/images/todays-wish/star_${key}.webp`;
   });
 
-  sub.src = `./assets/images/todays-wish/subtitle_${key}.png`;
-
+  sub.src = `./assets/images/todays-wish/subtitle_${key}.webp`;
 
   modal.classList.remove("hidden");
   document.body.style.overflow = "hidden";
@@ -104,7 +104,7 @@ voiceButtons.forEach((btn, index) => {
 
     const voiceIndex = index + 1;
     const audio = new Audio(
-      `../assets/voices/${currentMember}_${voiceIndex}.m4a`
+      `../assets/voices/${currentMember}_${voiceIndex}.m4a`,
     );
     currentAudio = audio;
     audio.play();
